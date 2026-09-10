@@ -53,22 +53,168 @@ export const products = [
 ];
 
 export const projects = [
-  { slug: "fintrack-banking-app", title: "FinTrack — Digital Banking App", client: "Meridian Bank", category: "Mobile", industry: "FinTech", year: "2025", summary: "A React Native banking app with biometric login, instant transfers and AI spend insights for 1.2M customers.", tech: ["React Native", "Node.js", "PostgreSQL", "AWS"], image: photo("ne-proj-fintrack", 1200, 800), hue: "cyan", metrics: [["4.8★", "App Store rating"], ["1.2M", "Active users"], ["-37%", "Support tickets"]] },
-  { slug: "urbancart-marketplace", title: "UrbanCart Marketplace", client: "UrbanCart", category: "Web", industry: "E-commerce", year: "2025", summary: "A multi-vendor marketplace on Next.js with headless commerce, real-time inventory and personalised recommendations.", tech: ["Next.js", "GraphQL", "Redis", "Vercel"], image: photo("ne-proj-urbancart", 1200, 800), hue: "violet", metrics: [["+64%", "Conversion"], ["12k", "Vendors"], ["0.9s", "LCP"]] },
-  { slug: "medilink-telehealth", title: "MediLink Telehealth Platform", client: "Cascade Health", category: "Web", industry: "Healthcare", year: "2024", summary: "HIPAA-compliant telehealth with video consultations, e-prescriptions and EHR integration across 90 clinics.", tech: ["React", ".NET", "Azure", "FHIR"], image: photo("ne-proj-medilink", 1200, 800), hue: "lime", metrics: [["90", "Clinics"], ["300k", "Consults / yr"], ["99.95%", "Uptime"]] },
-  { slug: "fleetsense-iot", title: "FleetSense IoT Dashboard", client: "Orbital Logistics", category: "Cloud", industry: "Logistics", year: "2024", summary: "Streaming telemetry from 9,000 vehicles into a Kubernetes-hosted analytics platform with predictive maintenance.", tech: ["Kafka", "Kubernetes", "TimescaleDB", "GCP"], image: photo("ne-proj-fleetsense", 1200, 800), hue: "cyan", metrics: [["9k", "Vehicles"], ["-18%", "Fuel spend"], ["2B", "Events / day"]] },
-  { slug: "learnly-lms", title: "Learnly — Learning Platform", client: "Learnly", category: "Web", industry: "EdTech", year: "2024", summary: "A video-first LMS with live classes, adaptive quizzes and an AI tutor serving 400k students.", tech: ["Next.js", "Python", "OpenAI", "AWS"], image: photo("ne-proj-learnly", 1200, 800), hue: "violet", metrics: [["400k", "Students"], ["+41%", "Completion"], ["35", "Countries"]] },
-  { slug: "visionqc-inspection", title: "VisionQC — AI Inspection", client: "Helix Robotics", category: "AI/ML", industry: "Manufacturing", year: "2025", summary: "Computer-vision defect detection running on edge devices at 240 units per minute.", tech: ["PyTorch", "TensorRT", "Jetson", "MLOps"], image: photo("ne-proj-visionqc", 1200, 800), hue: "lime", metrics: [["-63%", "Escaped defects"], ["11ms", "Latency"], ["$4.2M", "Saved / yr"]] },
-  { slug: "nomad-travel-app", title: "Nomad Travel Companion", client: "Nomad Inc.", category: "Mobile", industry: "Travel", year: "2023", summary: "Flutter app with offline maps, itinerary AI and in-app bookings, launched in 22 markets.", tech: ["Flutter", "Firebase", "Maps SDK", "Stripe"], image: photo("ne-proj-nomad", 1200, 800), hue: "cyan", metrics: [["2M", "Downloads"], ["22", "Markets"], ["4.7★", "Rating"]] },
-  { slug: "insurai-claims", title: "InsurAI Claims Automation", client: "Atlas Insurance", category: "AI/ML", industry: "Insurance", year: "2025", summary: "LLM-powered document understanding that triages and drafts claim decisions with human review.", tech: ["LLMs", "RAG", "Python", "Azure"], image: photo("ne-proj-insurai", 1200, 800), hue: "violet", metrics: [["-70%", "Processing time"], ["94%", "Accuracy"], ["5 days → 6h", "Cycle"]] },
-  { slug: "greengrid-energy", title: "GreenGrid Energy Portal", client: "Nordwind Energy", category: "Cloud", industry: "Energy", year: "2023", summary: "Customer portal + cloud migration of legacy billing to serverless AWS, cutting infra cost by 40%.", tech: ["AWS Lambda", "React", "Terraform", "DynamoDB"], image: photo("ne-proj-greengrid", 1200, 800), hue: "lime", metrics: [["-40%", "Infra cost"], ["1.5M", "Accounts"], ["Zero", "Downtime migration"]] },
+  {
+    slug: "raahbar-spiritual-guide",
+    title: "Raahbar — Spiritual Companion Ecosystem",
+    client: "Raahbar Ecosystem",
+    category: "Mobile",
+    industry: "Media & Lifestyle",
+    year: "2025",
+    summary: "Multi-platform spiritual companion suite featuring an offline-first Expo React Native app, Fastify v5 API backend, 2-step content verification moderation, AWS S3 asset streaming, and transactional push outbox worker.",
+    tech: ["Fastify v5", "React Native", "Expo SDK 54", "PostgreSQL 16", "Expo SQLite", "2-Step Verification", "Adhan JS"],
+    image: "/raahbar.png",
+    hue: "violet",
+    metrics: [["Sub-100ms", "Fastify API Latency"], ["100% Offline", "Functional Availability"], ["2-Step", "Content Verification"]],
+    externalUrl: null,
+    playStoreUrl: null,
+    highlights: [
+      "Two-Step Content Verification Pipeline: Multi-stage moderation workflow where community broadcasts, Payams, and religious literature undergo Super Admin verification & validation before public release and automated regional push dispatch.",
+      "Dual-layer hybrid database architecture combining PostgreSQL 16 on cloud with high-performance on-device Expo SQLite for 100% offline access to Quranic texts and Duas.",
+      "Real-time GPS coordinate fetching paired with Adhan JS mathematical calculations for precise prayer times across multiple juristic conventions.",
+      "Transactional outbox pattern (notificationWorker.ts) for reliably batch-dispatching mobile push notifications via Expo Push API with retry backoff."
+    ]
+  },
+  {
+    slug: "inventory-management-system",
+    title: "Single Inventory — Enterprise ERP & Ledger",
+    client: "Retail & Manufacturing Enterprise",
+    category: "Web",
+    industry: "Logistics & Retail",
+    year: "2025",
+    summary: "Multi-tenant inventory management, POS billing, and dual-mode financial accounting platform with real-time stock reconciliation and automated GST/Estimate ledgers.",
+    tech: ["Django 4.2", "Python", "Celery", "Celery Beat", "Redis", "PostgreSQL", "WeasyPrint PDF", "Docker"],
+    image: "/inventory.jpg",
+    hue: "cyan",
+    metrics: [["< 15ms", "POS Lookup Latency"], ["100%", "Automated Celery Rollups"], ["100%", "Dual-Channel Isolation"]],
+    externalUrl: null,
+    playStoreUrl: null,
+    highlights: [
+      "Dual-mode enterprise accounting allowing business owners to run tax-compliant GST billing alongside internal estimate sales with strict data partitioning.",
+      "High-performance Redis caching layer (django-redis) delivering sub-15ms entity lookup speeds for high-concurrency POS usage.",
+      "Background worker architecture using Celery & Celery Beat for periodic ledger resets and automatic balance migrations."
+    ]
+  },
+  {
+    slug: "banas-water-billing",
+    title: "Banas Water — Automated Delivery & Billing Platform",
+    client: "Banas Water Co.",
+    category: "Web",
+    industry: "Utilities & Service Ops",
+    year: "2025",
+    summary: "Enterprise-grade digital logistics, QR-verified cooler delivery tracking, automated monthly billing, and real-time customer ledger ecosystem for water distributors.",
+    tech: ["Django 6.0 REST", "React 19", "React Native", "Upstash QStash", "PostgreSQL (UUIDv7)", "Redis", "Docker", "AWS S3"],
+    image: "/banas.jpg",
+    hue: "cyan",
+    metrics: [["< 50ms", "API Latency"], ["100%", "Worker-Free QStash Tasks"], ["-95%", "Billing Disputes"]],
+    externalUrl: null,
+    playStoreUrl: null,
+    highlights: [
+      "Production-ready REST API architected with Django 6.0, SimpleJWT authentication, OpenAPI/Swagger docs, and Gunicorn WSGI multi-threading.",
+      "Worker-free background task queue using Upstash QStash HTTP webhooks for automated monthly billing runs and paced WhatsApp invoice delivery via Evolution API.",
+      "High-performance database layer with time-ordered UUIDv7 primary keys, compound B-tree indexing, and Upstash Redis caching."
+    ]
+  },
+  {
+    slug: "arcana-luxury-gifting",
+    title: "ARCANA — Luxury AI Curation & Mystery Gifting",
+    client: "Arcana (UAE / GCC Market)",
+    category: "Mobile",
+    industry: "E-Commerce & AI",
+    year: "2025",
+    summary: "AI-driven luxury curation platform combining Claude 4.6 Sonnet customer profiling with human atelier curation, automated UAE courier dispatch (Quiqup), and proof-gated order fulfillment.",
+    tech: ["React Native", "React 19", "Node.js (Express v5)", "PostgreSQL", "Claude 4.6 AI", "Quiqup API", "Stripe"],
+    image: "/arcana.jpg",
+    hue: "violet",
+    metrics: [["AI + Human", "Curation Engine"], ["Quiqup UAE", "Automated Logistics"], ["Proof-Gated", "FSM Fulfillment"]],
+    externalUrl: "https://arcana-web.uv-techsoft.com/",
+    playStoreUrl: null,
+    highlights: [
+      "AI Creative Agent powered by Anthropic Claude 4.6 Sonnet generating bespoke item proposals from customer preference vectors (scents, colors, apparel, mood profiles).",
+      "Proof-Gated Finite State Machine (FSM) enforcing packaging photo verification before packing and dispatching orders.",
+      "Automated UAE logistics integration with Quiqup API for instant courier dispatch, shipping label URL generation, and status webhooks."
+    ]
+  },
+  {
+    slug: "starfomo-social-platform",
+    title: "StarFomo — Next-Gen Social App & Recommendation Algo",
+    client: "StarFomo",
+    category: "Mobile",
+    industry: "Social & Media",
+    year: "2025",
+    summary: "Mobile social platform featuring short video reels, clean content moderation, cash reward wallet, and a custom behavioral feed ranking algorithm.",
+    tech: ["React Native", "Node.js", "Express", "MongoDB", "Redis", "Behavioral Feed Algo", "Android/iOS"],
+    image: "https://starfomo.com/wp-content/uploads/2026/04/Star-Fomo-light-4-1.png",
+    hue: "lime",
+    metrics: [["5K+", "Active Users"], ["4.8★", "Google Play Rating"], ["Custom Algo", "Real-Time Feed Ranking"]],
+    externalUrl: "https://starfomo.com/",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.starfomo.socialapp",
+    highlights: [
+      "Custom recommendation and ranking algorithm analyzing watch time, interaction signals, and dwell duration to elevate top posts in user feeds.",
+      "High-FPS video feed player for short video reels, moment sharing, and clean community content moderation.",
+      "Integrated reward wallet tracking user engagement and enabling seamlessly processed cash reward withdrawals."
+    ]
+  },
+  {
+    slug: "arya-taray-foundation",
+    title: "Arya Taray — Monastic & Community Services Platform",
+    client: "Central Monastic Body (Dratshang) of Bhutan",
+    category: "Web",
+    industry: "Non-Profit & Cultural",
+    year: "2025",
+    summary: "Enterprise digital platform centralizing ritual service bookings, transparent donation management, and Dzongkhag-aware event coordination across Bhutan.",
+    tech: ["Django 5.2 REST", "React 18", "TypeScript", "PostgreSQL", "LocMemCache (SHA-256)", "Recharts", "Render Cloud"],
+    image: "/aryataray.jpg",
+    hue: "lime",
+    metrics: [["< 10ms", "Public Cache Latency"], ["20 Dzongkhags", "National Coverage"], ["100%", "Atomic Backup Integrity"]],
+    externalUrl: "https://aryataray.bt/",
+    playStoreUrl: null,
+    highlights: [
+      "Public-facing Buddhist prayer & ritual service booking engine with region mapping and administrative fulfillment pipelines.",
+      "Dzongkhag-aware event calendar management system across Bhutan's 20 Dzongkhags with real-time temporal status calculations.",
+      "High-throughput DRF caching layer utilizing SHA-256 process-local cache keys, delivering sub-10ms public response latency."
+    ]
+  }
 ];
 
 export const caseStudies = [
-  { slug: "meridian-digital-banking", client: "Meridian Bank", industry: "FinTech", title: "Re-platforming a bank's mobile experience in nine months", excerpt: "How we replaced a legacy banking app with a React Native platform serving 1.2M customers — without a single day of downtime.", image: photo("ne-cs-meridian", 1400, 900), hue: "cyan", services: ["Mobile", "Cloud", "UI/UX"], results: [["4.8★", "App rating (from 2.9)"], ["-37%", "Support tickets"], ["9 mo", "To launch"]], challenge: "Meridian's 8-year-old native apps were slow to ship, rated 2.9 stars and blocked new products like instant payments. Two prior modernisation attempts had stalled.", approach: ["Discovery sprint with 40 customer interviews and a full audit of the legacy API surface.", "Single React Native codebase with a design system shared with web.", "Strangler-fig migration: new app shipped feature-by-feature behind flags while the old app stayed live.", "Biometric auth, instant transfers and an AI spend-insights engine on AWS.", "Automated test suite with 2,400 E2E tests and weekly release train."], outcome: "The new app launched to 100% of customers in nine months, ratings climbed to 4.8, support tickets fell 37% and Meridian now ships weekly." },
-  { slug: "urbancart-headless-commerce", client: "UrbanCart", industry: "E-commerce", title: "Doubling conversion with a headless marketplace rebuild", excerpt: "A monolithic storefront replaced with Next.js + headless commerce, lifting conversion 64% and cutting page load to under a second.", image: photo("ne-cs-urbancart", 1400, 900), hue: "violet", services: ["Web", "Cloud", "Data"], results: [["+64%", "Conversion"], ["0.9s", "LCP"], ["12k", "Vendors onboarded"]], challenge: "UrbanCart's monolith took 4+ seconds to load, couldn't handle flash-sale traffic and made vendor onboarding a manual, week-long process.", approach: ["Composable architecture: Next.js storefront, GraphQL gateway, headless commerce backend.", "Edge caching and ISR for sub-second pages worldwide.", "Self-serve vendor portal with automated KYC.", "Personalisation engine using purchase and browsing signals.", "Load-tested to 50× baseline traffic before Black Friday."], outcome: "Conversion rose 64%, Black Friday ran with zero incidents at 30× normal load, and vendor onboarding dropped from a week to 20 minutes." },
-  { slug: "helix-ai-quality-inspection", client: "Helix Robotics", industry: "Manufacturing", title: "AI visual inspection at 240 units per minute", excerpt: "Edge computer-vision that cut escaped defects by 63% and saved $4.2M a year on a single production line.", image: photo("ne-cs-helix", 1400, 900), hue: "lime", services: ["AI/ML", "Cloud", "Data"], results: [["-63%", "Escaped defects"], ["11ms", "Inference"], ["$4.2M", "Annual savings"]], challenge: "Manual inspection missed micro-defects at line speed, and cloud-based vision was too slow and too expensive at 240 units per minute.", approach: ["12-camera capture rig with synchronised lighting.", "Custom detection models compressed with TensorRT for NVIDIA Jetson.", "Active-learning loop: operators label edge cases in-app, models retrain weekly.", "MLOps pipeline with drift monitoring and OTA model rollout.", "Operator dashboard integrated with the MES."], outcome: "Escaped defects fell 63% within the first quarter, inference runs in 11ms on-device, and the client is rolling the system out to 14 more lines." },
-  { slug: "nordwind-cloud-migration", client: "Nordwind Energy", industry: "Energy", title: "Zero-downtime migration of legacy billing to serverless AWS", excerpt: "1.5M customer accounts moved from an on-prem monolith to a serverless platform, cutting infrastructure cost 40%.", image: photo("ne-cs-nordwind", 1400, 900), hue: "cyan", services: ["Cloud", "Web", "QA"], results: [["-40%", "Infra cost"], ["0", "Minutes downtime"], ["1.5M", "Accounts migrated"]], challenge: "A 15-year-old billing system on end-of-life hardware, with no documentation and a regulatory requirement for 24/7 availability.", approach: ["Reverse-engineered the domain model with the two remaining subject-matter experts.", "Event-driven serverless architecture on Lambda, DynamoDB and Step Functions.", "Dual-run period with automated reconciliation of every invoice.", "Infrastructure as code with Terraform and full observability stack.", "New customer portal with self-service billing."], outcome: "The cutover completed with zero downtime and zero billing discrepancies; infrastructure cost fell 40% and release cadence went from quarterly to daily." },
+  {
+    slug: "terms-conditions-nlp-analyzer",
+    client: "Consumer Protection & LegalTech",
+    industry: "AI / LegalTech",
+    title: "Generative AI & RAG Pipeline for Analyzing Complex Legal & Privacy Documents",
+    excerpt: "Architected an enterprise GenAI solution using RAG, vector databases, custom LLM prompt engineering, Django REST API, and a React Native mobile app to flag consumer-unfriendly clauses in real time.",
+    image: "/privacy_ai.jpg",
+    hue: "cyan",
+    services: ["AI/ML", "Mobile", "Cloud"],
+    results: [["RAG + LLM", "GenAI Pipeline"], ["Vector DB", "Document Chunking"], ["Django + React Native", "Full-Stack Integration"]],
+    challenge: "Consumers blindly accept dense privacy policies and bank terms without reading them, exposing themselves to aggressive data sharing, arbitration traps, and unfavorable fee structures.",
+    approach: [
+      "Generative AI & RAG Architecture: Built a production GenAI pipeline to ingest, chunk, embed, and analyze dense multi-page legal documents.",
+      "Vector DB Retrieval: Implemented a vector database retrieval pipeline to search semantic text segments and retrieve relevant contract context without hallucination.",
+      "Custom Prompt Engineering: Crafted prompt strategies guiding LLMs to isolate customer-adverse clauses, categorize risk severity, and output plain-English explanations.",
+      "React Native & Django REST: Exposed AI insights through a Django REST API integrated with a React Native mobile application for Android & iOS."
+    ],
+    outcome: "Delivered an end-to-end GenAI legal audit solution that processes complex legal documents in seconds, alerting users to problematic terms before signing or accepting."
+  },
+  {
+    slug: "gods-eye-facial-recognition",
+    client: "Smart Security & Facility Ops",
+    industry: "AI / Computer Vision",
+    title: "Real-time Edge Facial Detection and WebSockets Multi-Camera Tracking",
+    excerpt: "Multi-camera computer vision architecture combining OpenCV, Dlib 68-point facial landmark embeddings, edge Flask camera micro-services, and real-time Socket.IO alerts on a central web dashboard.",
+    image: "/gods_eye.jpg",
+    hue: "violet",
+    services: ["AI/ML", "Web", "IoT"],
+    results: [["Real-Time", "Socket.IO WebSockets"], ["Dlib + OpenCV", "Edge Embeddings"], ["Multi-Camera", "Unified Command UI"]],
+    challenge: "Locating authorized individuals or missing persons across multi-camera facility networks typically requires costly proprietary hardware and manual video monitoring.",
+    approach: [
+      "Facial Embedding Pipeline: Used Python and Dlib to extract 68-point facial landmarks and store vector embeddings in a centralized database.",
+      "Edge Camera Micro-Services: Built lightweight Flask services running on local camera feeds to detect faces using OpenCV and match vector signatures on the edge.",
+      "Low-Latency Socket.IO Alerts: Integrated Python-SocketIO to push instantaneous WebSocket notifications to the command dashboard whenever a target is identified.",
+      "Interactive Command Center: Built a live frontend dashboard displaying camera coordinates, timestamp logs, and snapshot matches."
+    ],
+    outcome: "Deployed a distributed computer vision tracking system capable of real-time multi-camera detection and instant WebSocket alert delivery."
+  }
 ];
 
 export const posts = [

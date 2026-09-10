@@ -56,6 +56,20 @@ export function ProjectDetail() {
     <>
       <PageHero eyebrow={`${p.client} · ${p.industry} · ${p.year}`} title={p.title} lead={p.summary}>
         <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "1.5rem" }}>{p.tech.map((t) => <span key={t} className="tag">{t}</span>)}</div>
+        {(p.externalUrl || p.playStoreUrl) && (
+          <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
+            {p.externalUrl && (
+              <a href={p.externalUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                Visit Live Site <Icon name="arrow" size={16} />
+              </a>
+            )}
+            {p.playStoreUrl && (
+              <a href={p.playStoreUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                Google Play Store <Icon name="arrow" size={16} />
+              </a>
+            )}
+          </div>
+        )}
       </PageHero>
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
@@ -67,18 +81,24 @@ export function ProjectDetail() {
             <Reveal><div className="eyebrow">The brief</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>What {p.client} needed</h2></Reveal>
             <Reveal delay={0.1} className="split__text">
               <p className="lead">{p.client} came to us with an ambitious goal in the {p.industry.toLowerCase()} space and a legacy setup that couldn't get them there. They needed a partner to own the product end-to-end — design, engineering, cloud and launch.</p>
-              <p className="muted" style={{ marginTop: "1rem" }}>Our team ran a two-week discovery, aligned on measurable success criteria, and shipped the first production release inside the first quarter.</p>
+              <p className="muted" style={{ marginTop: "1rem" }}>Our team ran a discovery sprint, aligned on measurable success criteria, and shipped the first production release inside the first quarter.</p>
             </Reveal>
           </div>
           <div className="split" style={{ marginTop: "4rem" }}>
-            <Reveal><div className="eyebrow">What we delivered</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>Scope & solution</h2></Reveal>
+            <Reveal><div className="eyebrow">What we delivered</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>Engineering highlights</h2></Reveal>
             <Reveal delay={0.1} className="split__text">
               <ul className="service__list">
-                <li><Icon name="check" size={16} /> Product discovery, UX research and clickable prototypes validated with real users.</li>
-                <li><Icon name="check" size={16} /> {p.category} build on {p.tech.slice(0, 2).join(" and ")} with a shared design system.</li>
-                <li><Icon name="check" size={16} /> Cloud infrastructure as code, CI/CD pipelines and automated test coverage.</li>
-                <li><Icon name="check" size={16} /> Analytics, monitoring and an operator dashboard for the client's team.</li>
-                <li><Icon name="check" size={16} /> Launch support, hypercare and an ongoing enhancement roadmap.</li>
+                {p.highlights ? p.highlights.map((h, i) => (
+                  <li key={i}><Icon name="check" size={16} /> {h}</li>
+                )) : (
+                  <>
+                    <li><Icon name="check" size={16} /> Product discovery, UX research and clickable prototypes validated with real users.</li>
+                    <li><Icon name="check" size={16} /> {p.category} build on {p.tech.slice(0, 2).join(" and ")} with a shared design system.</li>
+                    <li><Icon name="check" size={16} /> Cloud infrastructure as code, CI/CD pipelines and automated test coverage.</li>
+                    <li><Icon name="check" size={16} /> Analytics, monitoring and an operator dashboard for the client's team.</li>
+                    <li><Icon name="check" size={16} /> Launch support, hypercare and an ongoing enhancement roadmap.</li>
+                  </>
+                )}
               </ul>
             </Reveal>
           </div>
