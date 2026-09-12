@@ -13,7 +13,7 @@ const cats = ["All", ...new Set(projects.map((p) => p.category))];
 
 export default function Projects() {
   const [cat, setCat] = useState("All");
-  const list = cat === "All" ? projects : projects.filter((p) => p.category === cat);
+  const list = cat === "All" ? projects : projects.filter((p) => p.category.includes(cat));
   return (
     <>
       <PageHero eyebrow="Projects" title={<>A portfolio of products <span className="grad-text">shipped.</span></>} lead="Web, mobile, cloud and AI projects across ten industries. Every number is measured after launch.">

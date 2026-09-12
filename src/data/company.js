@@ -96,20 +96,21 @@ export const projects = [
   },
   {
     slug: "banas-water-billing",
-    title: "Banas Water — Automated Delivery & Billing Platform",
+    title: "Banas Water — Delivery, Mobile Apps & Admin Ecosystem",
     client: "Banas Water Co.",
-    category: "Web",
+    category: "Web & Mobile",
     industry: "Utilities & Service Ops",
     year: "2025",
-    summary: "Enterprise-grade digital logistics, QR-verified cooler delivery tracking, automated monthly billing, and real-time customer ledger ecosystem for water distributors.",
-    tech: ["Django 6.0 REST", "React 19", "React Native", "Upstash QStash", "PostgreSQL (UUIDv7)", "Redis", "Docker", "AWS S3"],
+    summary: "Complete digital logistics & billing suite featuring an Android delivery app, dedicated Admin mobile app, enterprise Web Admin panel, QR-verified cooler tracking, and automated customer ledger.",
+    tech: ["Django 6.0 REST", "React 19 (Web)", "React Native (Android)", "Admin & Delivery Apps", "Upstash QStash", "PostgreSQL (UUIDv7)", "Redis", "Docker", "AWS S3"],
     image: "/banas.jpg",
     hue: "cyan",
-    metrics: [["< 50ms", "API Latency"], ["100%", "Worker-Free QStash Tasks"], ["-95%", "Billing Disputes"]],
+    metrics: [["< 50ms", "API Latency"], ["3 Platforms", "Web Admin, Admin & Driver Apps"], ["-95%", "Billing Disputes"]],
     externalUrl: null,
     playStoreUrl: null,
     highlights: [
-      "Production-ready REST API architected with Django 6.0, SimpleJWT authentication, OpenAPI/Swagger docs, and Gunicorn WSGI multi-threading.",
+      "Multi-Platform Ecosystem: Field delivery Android app for route drivers, dedicated Admin mobile app for live ops tracking, and an enterprise React 19 Web Admin Panel.",
+      "Production-ready REST API architected with Django 6.0, SimpleJWT authentication, OpenAPI/Swagger docs, and Gunicorn WSGI multi-threading serving both mobile apps and web.",
       "Worker-free background task queue using Upstash QStash HTTP webhooks for automated monthly billing runs and paced WhatsApp invoice delivery via Evolution API.",
       "High-performance database layer with time-ordered UUIDv7 primary keys, compound B-tree indexing, and Upstash Redis caching."
     ]
