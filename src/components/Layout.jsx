@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -11,7 +11,7 @@ function ScrollManager() {
       const el = document.querySelector(hash);
       if (el) { setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 120); return; }
     }
-    window.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo(0, 0);
   }, [pathname, hash]);
   return null;
 }
@@ -22,11 +22,9 @@ export default function Layout() {
     <>
       <ScrollManager />
       <Navbar />
-      <AnimatePresence mode="wait">
-        <motion.main key={pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-          <Outlet />
-        </motion.main>
-      </AnimatePresence>
+      <motion.main key={pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+        <Outlet />
+      </motion.main>
       <Footer />
     </>
   );
