@@ -60,7 +60,7 @@ export function ProjectDetail() {
           <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
             {p.externalUrl && (
               <a href={p.externalUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-                Visit Live Site <Icon name="arrow" size={16} />
+                Visit Project Portfolio <Icon name="arrow" size={16} />
               </a>
             )}
             {p.playStoreUrl && (
@@ -78,40 +78,63 @@ export function ProjectDetail() {
             {p.metrics.map(([v, l], i) => <Reveal key={l} delay={i * 0.06} className="stat card"><div className="stat__value">{v}</div><div className="muted">{l}</div></Reveal>)}
           </div>
           <div className="split" style={{ marginTop: "5rem" }}>
-            <Reveal><div className="eyebrow">The brief</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>What {p.client} needed</h2></Reveal>
+            <Reveal><div className="eyebrow">Executive Brief</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>Project Overview</h2></Reveal>
             <Reveal delay={0.1} className="split__text">
-              <p className="lead">{p.client} came to us with an ambitious goal in the {p.industry.toLowerCase()} space and a legacy setup that couldn't get them there. They needed a partner to own the product end-to-end — design, engineering, cloud and launch.</p>
-              <p className="muted" style={{ marginTop: "1rem" }}>Our team ran a discovery sprint, aligned on measurable success criteria, and shipped the first production release inside the first quarter.</p>
+              <p className="lead" style={{ fontSize: "1.1rem", lineHeight: "1.7" }}>{p.overview || p.summary}</p>
             </Reveal>
           </div>
-          <div className="split" style={{ marginTop: "4rem" }}>
-            <Reveal><div className="eyebrow">What we delivered</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>Engineering highlights</h2></Reveal>
-            <Reveal delay={0.1} className="split__text">
-              <ul className="service__list">
-                {p.highlights ? p.highlights.map((h, i) => (
-                  <li key={i}><Icon name="check" size={16} /> {h}</li>
-                )) : (
-                  <>
-                    <li><Icon name="check" size={16} /> Product discovery, UX research and clickable prototypes validated with real users.</li>
-                    <li><Icon name="check" size={16} /> {p.category} build on {p.tech.slice(0, 2).join(" and ")} with a shared design system.</li>
-                    <li><Icon name="check" size={16} /> Cloud infrastructure as code, CI/CD pipelines and automated test coverage.</li>
-                    <li><Icon name="check" size={16} /> Analytics, monitoring and an operator dashboard for the client's team.</li>
-                    <li><Icon name="check" size={16} /> Launch support, hypercare and an ongoing enhancement roadmap.</li>
-                  </>
-                )}
-              </ul>
-            </Reveal>
-          </div>
+          {p.features && p.features.length > 0 && (
+            <div className="split" style={{ marginTop: "4rem" }}>
+              <Reveal><div className="eyebrow">Key Capabilities</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>Features & Operational Workflows</h2></Reveal>
+              <Reveal delay={0.1} className="split__text">
+                <ul className="service__list">
+                  {p.features.map((f, i) => {
+                    const parts = f.split(":");
+                    const title = parts.length > 1 ? parts[0] + ":" : "";
+                    const desc = parts.length > 1 ? parts.slice(1).join(":") : f;
+                    return (
+                      <li key={i} style={{ marginBottom: "1.2rem", lineHeight: "1.6" }}>
+                        <Icon name="check" size={16} style={{ marginTop: 4, flexShrink: 0 }} />
+                        <div>
+                          {title && <strong style={{ color: "var(--fg)" }}>{title} </strong>}
+                          <span className="muted">{desc}</span>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Reveal>
+            </div>
+          )}
+          {p.architecture && p.architecture.length > 0 && (
+            <div className="split" style={{ marginTop: "4rem" }}>
+              <Reveal><div className="eyebrow">Technical Deep-Dive</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>Architecture & Engineering Highlights</h2></Reveal>
+              <Reveal delay={0.1} className="split__text">
+                <ul className="service__list">
+                  {p.architecture.map((a, i) => {
+                    const parts = a.split(":");
+                    const title = parts.length > 1 ? parts[0] + ":" : "";
+                    const desc = parts.length > 1 ? parts.slice(1).join(":") : a;
+                    return (
+                      <li key={i} style={{ marginBottom: "1.2rem", lineHeight: "1.6" }}>
+                        <Icon name="shield" size={16} style={{ marginTop: 4, flexShrink: 0 }} />
+                        <div>
+                          {title && <strong style={{ color: "var(--fg)" }}>{title} </strong>}
+                          <span className="muted">{desc}</span>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </Reveal>
+            </div>
+          )}
           {logos.length > 0 && (
             <Reveal style={{ marginTop: "4rem" }}>
               <div className="eyebrow">Tech stack</div>
-              <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>{logos.map((t) => <span key={t.name} className="logo-row"><BrandIcon icon={t} />{t.name}</span>)}</div>
+              <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", marginTop: "1rem" }}>{logos.map((t) => <span key={t.name} className="logo-row"><BrandIcon icon={t} />{t.name}</span>)}</div>
             </Reveal>
           )}
-          <div className="grid grid-2" style={{ marginTop: "4rem" }}>
-            <Reveal><Img src={`https://picsum.photos/seed/${p.slug}-a/900/600`} alt="" ratio="3/2" hover style={{ borderRadius: 18, border: "1px solid var(--line)" }} /></Reveal>
-            <Reveal delay={0.1}><Img src={`https://picsum.photos/seed/${p.slug}-b/900/600`} alt="" ratio="3/2" hover style={{ borderRadius: 18, border: "1px solid var(--line)" }} /></Reveal>
-          </div>
         </div>
       </section>
       <section className="section band" style={{ paddingTop: "3rem", paddingBottom: "3rem" }}>

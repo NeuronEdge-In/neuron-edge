@@ -54,19 +54,65 @@ export const products = [
 
 export const projects = [
   {
-    slug: "raahbar-spiritual-guide",
-    title: "Raahbar — Spiritual Companion Ecosystem",
-    client: "Raahbar Ecosystem",
-    category: "Mobile",
-    industry: "Media & Lifestyle",
+    slug: "banas-water-billing",
+    title: "Banas Water Delivery & Business Management Platform",
+    client: "Banas Water Co.",
+    category: "Web & Mobile",
+    industry: "Utilities & Service Ops",
     year: "2025",
-    summary: "Multi-platform spiritual companion suite featuring an offline-first Expo React Native app, Fastify v5 API backend, 2-step content verification moderation, AWS S3 asset streaming, and transactional push outbox worker.",
-    tech: ["Fastify v5", "React Native", "Expo SDK 54", "PostgreSQL 16", "Expo SQLite", "2-Step Verification", "Adhan JS"],
+    summary: "Enterprise-grade digital logistics, inventory tracking, and billing ecosystem designed for purified water distributors and route delivery managers. Replaces manual paper record-keeping with an automated, mobile-first workflow for daily water delivery logging, physical PIN/QR-verified customer deliveries, automated monthly billing, and real-time customer ledger tracking.",
+    overview: "Banas Water Delivery & Business Management Platform is an enterprise-grade digital logistics, inventory tracking, and billing ecosystem designed specifically for purified water distributors, beverage suppliers, and route delivery managers. The platform replaces manual paper-based record-keeping with an automated, mobile-first workflow for daily water delivery logging, PIN/QR-verified customer deliveries, automated monthly billing, and real-time customer ledger tracking across web and mobile clients.",
+    tech: ["Django 6.0 REST API", "React 19 (Web)", "React Native (Expo SDK 54)", "Upstash QStash", "PostgreSQL (UUIDv7)", "Redis", "Evolution API (WhatsApp)", "Docker", "AWS S3"],
+    image: "/banas.jpg",
+    hue: "cyan",
+    metrics: [["< 50ms", "Redis API Latency"], ["100%", "Worker-Free Task Automation"], ["-95%", "Billing Disputes"]],
+    externalUrl: "https://juned-the-programmer.github.io/JunedProtfolio.github.io/projects/Banas/banas.html",
+    playStoreUrl: null,
+    features: [
+      "Route-Based Customer & Delivery Management: Organizes customer accounts by geographical delivery routes with custom delivery sequencing, dynamic per-customer rate plans, and active status toggles to streamline daily route planning and delivery efficiency.",
+      "Dual-Mode Daily Delivery Logging: Provides rapid mobile entry supporting both manual delivery logging and location-based physical QR code scanning with PIN verification. Backed by an asynchronous staging module for offline field logging and automated batch reconciliation when network connection is restored.",
+      "Automated Monthly Billing Engine: Generates custom date-range monthly bills by automatically aggregating delivered water units and coolers, applying customer-specific rate structures, factoring in previous account balances or advance payments, and issuing unique sequential bill numbers.",
+      "Real-Time Customer Ledger & Payment Processing: Tracks multi-channel payments (Cash, UPI, Bank Transfer) with automatic balance deduction, round-off adjustments, and real-time account ledgers, providing full financial transparency for both business owners and customers.",
+      "Serverless Task Queue & Notification Dispatcher: Utilizes webhook-driven cron scheduling via Upstash QStash for monthly bill generation, midnight dashboard metric resets, and paced WhatsApp delivery alerts via Evolution API."
+    ],
+    architecture: [
+      "Serverless Queue Parallelism & Worker-Free Background Architecture: Instead of running resource-heavy background worker processes, the backend utilizes Upstash QStash HTTP webhooks for serverless background execution. Database-heavy transactional queues (such as pending verification, bill batching, and bulk importing) are strictly constrained to single-worker parallelism to guarantee database write ordering and eliminate race conditions, while I/O-bound tasks (email dispatch and QR generation) run concurrently for maximum throughput.",
+      "Distributed High-Performance Schema with UUIDv7 & Compound Indexing: All core relational database models adopt time-ordered UUIDv7 primary keys, combining global uniqueness for multi-region scaling with B-tree index locality. Database tables feature custom compound indexes—such as (customer, -date_added) and (route, active)—enabling sub-millisecond query execution on route delivery screens and historical ledger lookups.",
+      "Modern Decoupled Multi-Client Ecosystem: The architecture pairs a mobile-first cross-platform application (Expo React Native with offline state management via Zustand and hardware-backed JWT storage in Expo Secure Store) alongside a high-density analytics admin dashboard featuring real-time visual charts (Recharts) and global state management via Redux Toolkit."
+    ],
+    highlights: [
+      "Multi-Platform Ecosystem: Field delivery Android app for route drivers, dedicated Admin mobile app for live ops tracking, and an enterprise React 19 Web Admin Panel.",
+      "Production-ready REST API architected with Django 6.0, SimpleJWT authentication, OpenAPI/Swagger docs, and Gunicorn WSGI multi-threading serving both mobile apps and web.",
+      "Worker-free background task queue using Upstash QStash HTTP webhooks for automated monthly billing runs and paced WhatsApp invoice delivery via Evolution API.",
+      "High-performance database layer with time-ordered UUIDv7 primary keys, compound B-tree indexing, and Upstash Redis caching delivering sub-50ms API response latency."
+    ]
+  },
+  {
+    slug: "raahbar-spiritual-guide",
+    title: "Rahbar Ecosystem — Islamic Spiritual Suite",
+    client: "Raahbar Ecosystem",
+    category: "Mobile & Web",
+    industry: "Media & Spiritual Tech",
+    year: "2025",
+    summary: "Multi-platform digital spiritual companion suite featuring an offline-first Expo React Native app, Fastify v5 REST API backend microservices, administrative control dashboard, 2-step content verification pipeline, offline Quranic text engine, localized prayer time calculation engine, and transactional push notification dispatcher.",
+    overview: "Rahbar is a multi-platform digital Islamic spiritual companion suite designed for global users. The platform connects a high-performance cross-platform mobile application built with React Native and Expo with a lightweight Node.js microservices backend powered by Fastify v5. It provides offline-first access to religious literature, precise location-based prayer schedules, Qibla directional calculations, and verified community updates.",
+    tech: ["Fastify v5", "Node.js", "React Native", "Expo SDK 54", "PostgreSQL 16", "Expo SQLite", "Redis", "Upstash QStash", "Expo Push API", "Adhan JS"],
     image: "/raahbar.png",
     hue: "violet",
-    metrics: [["Sub-100ms", "Fastify API Latency"], ["100% Offline", "Functional Availability"], ["2-Step", "Content Verification"]],
-    externalUrl: null,
+    metrics: [["Sub-50ms", "Fastify REST API Latency"], ["100% Offline", "Quran & Dua Availability"], ["2-Step", "Admin Content Verification"]],
+    externalUrl: "https://juned-the-programmer.github.io/JunedProtfolio.github.io/projects/Raahbar/raahbar.html",
     playStoreUrl: null,
+    features: [
+      "Offline-First Quran & Duas Engine: Embeds an optimized SQLite database on mobile devices to ensure complete access to Quranic chapters, translations, phonetics, and supplications without requiring an active network connection.",
+      "Localized Prayer Schedules & Qibla Compass: Integrates Adhan JS and device GPS positioning to compute precise prayer times across multiple juristic conventions alongside real-time compass Qibla direction.",
+      "2-Step Verified Community Broadcasts & Payams: Features a multi-stage admin content moderation pipeline where community announcements and religious literature undergo Super Admin verification and validation before public release.",
+      "Transactional Outbox Push Notification Worker: Employs a background outbox pattern worker to reliably queue and batch-dispatch mobile push notifications via Expo Push API with exponential retry backoffs."
+    ],
+    architecture: [
+      "High-Throughput Fastify v5 Backend Microservices: Utilizes Node.js with Fastify v5 framework, delivering sub-50ms REST API response latency and minimal memory footprint compared to traditional web frameworks.",
+      "Dual Database Hybrid Storage: Combines PostgreSQL 16 on cloud for centralized user management, content verification, and analytics, paired with on-device Expo SQLite for offline content caching.",
+      "Redis In-Memory Caching & QStash Scheduler: Uses Upstash Redis for rapid prayer schedule caching and QStash for serverless cron execution of daily metric rollups and push notification triggers."
+    ],
     highlights: [
       "Two-Step Content Verification Pipeline: Multi-stage moderation workflow where community broadcasts, Payams, and religious literature undergo Super Admin verification & validation before public release and automated regional push dispatch.",
       "Dual-layer hybrid database architecture combining PostgreSQL 16 on cloud with high-performance on-device Expo SQLite for 100% offline access to Quranic texts and Duas.",
@@ -76,145 +122,97 @@ export const projects = [
   },
   {
     slug: "inventory-management-system",
-    title: "Single Inventory — Enterprise ERP & Ledger",
-    client: "Retail & Manufacturing Enterprise",
-    category: "Web",
+    title: "Enterprise Dual-Mode Inventory & Accounting Platform",
+    client: "Retail & Wholesale Enterprise",
+    category: "Web & ERP",
     industry: "Logistics & Retail",
     year: "2025",
-    summary: "Multi-tenant inventory management, POS billing, and dual-mode financial accounting platform with real-time stock reconciliation and automated GST/Estimate ledgers.",
-    tech: ["Django 4.2", "Python", "Celery", "Celery Beat", "Redis", "PostgreSQL", "WeasyPrint PDF", "Docker"],
+    summary: "Enterprise real-time inventory reconciliation & dual-taxation accounting platform for retail networks and wholesale distributors. Features strict financial data isolation between GST tax invoices and non-tax estimate sales records, automated background ledger rollups, sub-15ms Redis query caching, and server-side PDF compilation.",
+    overview: "Enterprise Dual-Mode Inventory & Accounting Platform is a robust ERP solution built to solve dual-record keeping challenges in retail networks. It enables business owners to seamlessly manage product catalogs, real-time multi-warehouse stock levels, point-of-sale (POS) barcode billing, and dual-taxation financial ledgers within a single unified web platform.",
+    tech: ["Python 3.10+", "Django 4.2", "Django REST Framework", "PostgreSQL 13+", "Redis Cache", "Celery", "Celery Beat", "WeasyPrint PDF", "Docker", "Bootstrap 5"],
     image: "/inventory.jpg",
     hue: "cyan",
-    metrics: [["< 15ms", "POS Lookup Latency"], ["100%", "Automated Celery Rollups"], ["100%", "Dual-Channel Isolation"]],
-    externalUrl: null,
+    metrics: [["100%", "Tax & Non-Tax Data Isolation"], ["80%", "Accounting Overhead Reduction"], ["< 15ms", "POS Query Latency"]],
+    externalUrl: "https://juned-the-programmer.github.io/JunedProtfolio.github.io/projects/Inventory/inventory.html",
     playStoreUrl: null,
+    features: [
+      "100% Tax & Non-Tax Data Isolation: Implements session-level middleware partitioning that completely isolates official GST tax invoices from non-tax estimate sales records, giving owners clean financial reporting.",
+      "Real-Time Multi-Location Inventory Reconciliation: Tracks stock movements across multiple warehouses and retail counters with automatic stock deduction and dynamic minimum-quantity reorder alerts.",
+      "Server-Side PDF Invoicing Engine: Uses WeasyPrint to compile complex multi-line tax invoices and custom customer estimate receipts into downloadable PDFs in under 1 second.",
+      "Automated Background Ledger Rollups: Celery Beat periodic workers automatically compute daily and monthly profit/loss rollups, customer balance aging, and inventory valuation without manual bookkeeping."
+    ],
+    architecture: [
+      "Django 4.2 ORM & Redis Cache Layer: Optimizes relational database queries with Django ORM select_related and prefetch_related patterns, backed by Redis in-memory object caching for sub-15ms POS lookups.",
+      "Asynchronous Task Queue with Celery & Celery Beat: Decouples long-running report generation, bulk CSV data imports, and nightly ledger resets into background Celery workers.",
+      "Docker Containerized Infrastructure: Packaged with Docker Compose for consistent multi-environment deployment across staging and production servers."
+    ],
     highlights: [
       "Dual-mode enterprise accounting allowing business owners to run tax-compliant GST billing alongside internal estimate sales with strict data partitioning.",
       "High-performance Redis caching layer (django-redis) delivering sub-15ms entity lookup speeds for high-concurrency POS usage.",
       "Background worker architecture using Celery & Celery Beat for periodic ledger resets and automatic balance migrations."
-    ]
-  },
-  {
-    slug: "banas-water-billing",
-    title: "Banas Water — Delivery, Mobile Apps & Admin Ecosystem",
-    client: "Banas Water Co.",
-    category: "Web & Mobile",
-    industry: "Utilities & Service Ops",
-    year: "2025",
-    summary: "Complete digital logistics & billing suite featuring an Android delivery app, dedicated Admin mobile app, enterprise Web Admin panel, QR-verified cooler tracking, and automated customer ledger.",
-    tech: ["Django 6.0 REST", "React 19 (Web)", "React Native (Android)", "Admin & Delivery Apps", "Upstash QStash", "PostgreSQL (UUIDv7)", "Redis", "Docker", "AWS S3"],
-    image: "/banas.jpg",
-    hue: "cyan",
-    metrics: [["< 50ms", "API Latency"], ["3 Platforms", "Web Admin, Admin & Driver Apps"], ["-95%", "Billing Disputes"]],
-    externalUrl: null,
-    playStoreUrl: null,
-    highlights: [
-      "Multi-Platform Ecosystem: Field delivery Android app for route drivers, dedicated Admin mobile app for live ops tracking, and an enterprise React 19 Web Admin Panel.",
-      "Production-ready REST API architected with Django 6.0, SimpleJWT authentication, OpenAPI/Swagger docs, and Gunicorn WSGI multi-threading serving both mobile apps and web.",
-      "Worker-free background task queue using Upstash QStash HTTP webhooks for automated monthly billing runs and paced WhatsApp invoice delivery via Evolution API.",
-      "High-performance database layer with time-ordered UUIDv7 primary keys, compound B-tree indexing, and Upstash Redis caching."
-    ]
-  },
-  {
-    slug: "arcana-luxury-gifting",
-    title: "ARCANA — Luxury AI Curation & Mystery Gifting",
-    client: "Arcana (UAE / GCC Market)",
-    category: "Mobile",
-    industry: "E-Commerce & AI",
-    year: "2025",
-    summary: "AI-driven luxury curation platform combining Claude 4.6 Sonnet customer profiling with human atelier curation, automated UAE courier dispatch (Quiqup), and proof-gated order fulfillment.",
-    tech: ["React Native", "React 19", "Node.js (Express v5)", "PostgreSQL", "Claude 4.6 AI", "Quiqup API", "Stripe"],
-    image: "/arcana.jpg",
-    hue: "violet",
-    metrics: [["AI + Human", "Curation Engine"], ["Quiqup UAE", "Automated Logistics"], ["Proof-Gated", "FSM Fulfillment"]],
-    externalUrl: "https://arcana-web.uv-techsoft.com/",
-    playStoreUrl: null,
-    highlights: [
-      "AI Creative Agent powered by Anthropic Claude 4.6 Sonnet generating bespoke item proposals from customer preference vectors (scents, colors, apparel, mood profiles).",
-      "Proof-Gated Finite State Machine (FSM) enforcing packaging photo verification before packing and dispatching orders.",
-      "Automated UAE logistics integration with Quiqup API for instant courier dispatch, shipping label URL generation, and status webhooks."
-    ]
-  },
-  {
-    slug: "starfomo-social-platform",
-    title: "StarFomo — Next-Gen Social App & Recommendation Algo",
-    client: "StarFomo",
-    category: "Mobile",
-    industry: "Social & Media",
-    year: "2025",
-    summary: "Mobile social platform featuring short video reels, clean content moderation, cash reward wallet, and a custom behavioral feed ranking algorithm.",
-    tech: ["React Native", "Node.js", "Express", "MongoDB", "Redis", "Behavioral Feed Algo", "Android/iOS"],
-    image: "https://starfomo.com/wp-content/uploads/2026/04/Star-Fomo-light-4-1.png",
-    hue: "lime",
-    metrics: [["5K+", "Active Users"], ["4.8★", "Google Play Rating"], ["Custom Algo", "Real-Time Feed Ranking"]],
-    externalUrl: "https://starfomo.com/",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=com.starfomo.socialapp",
-    highlights: [
-      "Custom recommendation and ranking algorithm analyzing watch time, interaction signals, and dwell duration to elevate top posts in user feeds.",
-      "High-FPS video feed player for short video reels, moment sharing, and clean community content moderation.",
-      "Integrated reward wallet tracking user engagement and enabling seamlessly processed cash reward withdrawals."
-    ]
-  },
-  {
-    slug: "arya-taray-foundation",
-    title: "Arya Taray — Monastic & Community Services Platform",
-    client: "Central Monastic Body (Dratshang) of Bhutan",
-    category: "Web",
-    industry: "Non-Profit & Cultural",
-    year: "2025",
-    summary: "Enterprise digital platform centralizing ritual service bookings, transparent donation management, and Dzongkhag-aware event coordination across Bhutan.",
-    tech: ["Django 5.2 REST", "React 18", "TypeScript", "PostgreSQL", "LocMemCache (SHA-256)", "Recharts", "Render Cloud"],
-    image: "/aryataray.jpg",
-    hue: "lime",
-    metrics: [["< 10ms", "Public Cache Latency"], ["20 Dzongkhags", "National Coverage"], ["100%", "Atomic Backup Integrity"]],
-    externalUrl: "https://aryataray.bt/",
-    playStoreUrl: null,
-    highlights: [
-      "Public-facing Buddhist prayer & ritual service booking engine with region mapping and administrative fulfillment pipelines.",
-      "Dzongkhag-aware event calendar management system across Bhutan's 20 Dzongkhags with real-time temporal status calculations.",
-      "High-throughput DRF caching layer utilizing SHA-256 process-local cache keys, delivering sub-10ms public response latency."
     ]
   }
 ];
 
 export const caseStudies = [
   {
+    slug: "attendance-face-recognition",
+    client: "Academic Institution (Under Dr. Hemanth K.S.)",
+    industry: "AI / Computer Vision & EdTech",
+    title: "Patent-Pending Facial Recognition Attendance System & Multi-Face Verification",
+    excerpt: "Invented a patent-pending multi-face batch verification methodology in a single camera frame, eliminating manual roll-call and outputting sub-2 second automated Excel roster logs.",
+    image: "/attendance.png",
+    hue: "lime",
+    services: ["AI/ML", "Computer Vision", "Web"],
+    results: [["Patent Pending", "Batch Verification Engine"], ["< 2 Seconds", "Roster Export Speed"], ["100%", "Roll-Call Elimination"]],
+    challenge: "Traditional paper roll-call attendance in large university classrooms suffers from proxy attendance, significant lecture time waste (10–15 minutes lost per class), and tedious manual administrative bookkeeping.",
+    approach: [
+      "Patent-Pending Batch Verification Architecture: Invented a multi-face verification engine capable of detecting, cropping, and verifying multiple student facial vectors in a single frame under varied indoor lighting and angles.",
+      "Lightweight Computer Vision Inference: Optimized OpenCV image preprocessing, facial alignment, and noise reduction pipelines to execute high-precision inference without requiring expensive GPU hardware.",
+      "Facial Feature Vector Embeddings: Employed convolutional feature extraction (TensorFlow & Teachable Machine) to generate 128-dimensional facial embedding vectors and match them against student database profiles.",
+      "Automated Roster Export Engine: Built an automated data engine matching identified facial vectors with registered student IDs, compiling daily/monthly summaries into formatted XLSX and CSV reports.",
+      "Centralized Administrative Portal: Built a Django administration portal allowing faculty members to enroll student face profiles, review attendance logs, and manage course rosters."
+    ],
+    outcome: "Successfully deployed a patent-pending multi-face attendance verification solution that records complete classroom rosters in under 2 seconds per frame, entirely eliminating manual roll-call overhead for faculty."
+  },
+  {
     slug: "terms-conditions-nlp-analyzer",
-    client: "Consumer Protection & LegalTech",
-    industry: "AI / LegalTech",
-    title: "Generative AI & RAG Pipeline for Analyzing Complex Legal & Privacy Documents",
-    excerpt: "Architected an enterprise GenAI solution using RAG, vector databases, custom LLM prompt engineering, Django REST API, and a React Native mobile app to flag consumer-unfriendly clauses in real time.",
+    client: "Consumer LegalTech & Finance",
+    industry: "AI / LegalTech & Mobile",
+    title: "AI-Powered Terms & Conditions NLP Risk Analyzer for Banking & Legal Contracts",
+    excerpt: "Architected an enterprise AI legal audit suite pairing mobile OCR document scanning with custom Word2Vec vector embeddings and NLP risk classification to detect predatory clauses in sub-3 seconds with >88% accuracy.",
     image: "/privacy_ai.jpg",
     hue: "cyan",
     services: ["AI/ML", "Mobile", "Cloud"],
-    results: [["RAG + LLM", "GenAI Pipeline"], ["Vector DB", "Document Chunking"], ["Django + React Native", "Full-Stack Integration"]],
-    challenge: "Consumers blindly accept dense privacy policies and bank terms without reading them, exposing themselves to aggressive data sharing, arbitration traps, and unfavorable fee structures.",
+    results: [["Sub-3s", "Cloud NLP Inference"], ["> 88%", "Predatory Risk Detection"], ["100%", "Cross-Platform Mobile Coverage"]],
+    challenge: "Millions of consumers accept complex legal policies, bank terms, and credit agreements without reading dense legalese, exposing themselves to hidden financial penalties, automatic fee escalation, and forced arbitration traps.",
     approach: [
-      "Generative AI & RAG Architecture: Built a production GenAI pipeline to ingest, chunk, embed, and analyze dense multi-page legal documents.",
-      "Vector DB Retrieval: Implemented a vector database retrieval pipeline to search semantic text segments and retrieve relevant contract context without hallucination.",
-      "Custom Prompt Engineering: Crafted prompt strategies guiding LLMs to isolate customer-adverse clauses, categorize risk severity, and output plain-English explanations.",
-      "React Native & Django REST: Exposed AI insights through a Django REST API integrated with a React Native mobile application for Android & iOS."
+      "Multi-Page OCR Document Ingestion Pipeline: Built a mobile camera document ingestion engine in React Native (Expo) that crops, denoises, and normalizes physical contract photos into structured text data.",
+      "Domain-Specific Legal Dataset Curation: Collected and manually annotated thousands of legal clauses from financial agreements, credit cards, and service policies to train high-precision consumer risk models.",
+      "Word2Vec Embeddings & Legal Risk Matrix: Trained Word2Vec vector embeddings and NLP classification models (Scikit-Learn, NLTK) to evaluate semantic context and tag contract clauses into risk tiers (High Risk, Moderate Risk, Compliance Warning).",
+      "Predatory Clause & Risk Scanner: Evaluated text specifically for consumer-adverse clauses including automatic renewal traps, forced arbitration, hidden penalty fees, and excessive data privacy waivers.",
+      "Cloud REST API & Mobile Dashboard: Exposed real-time inference microservices via Django REST Framework on Google Cloud Platform (GCP), returning highlighted risk clauses and plain-language summaries to mobile clients."
     ],
-    outcome: "Delivered an end-to-end GenAI legal audit solution that processes complex legal documents in seconds, alerting users to problematic terms before signing or accepting."
+    outcome: "Delivered an intuitive AI legal auditor that parses multi-page agreements in under 3 seconds, alerting users to predatory terms before signing or accepting contracts."
   },
   {
     slug: "gods-eye-facial-recognition",
-    client: "Smart Security & Facility Ops",
-    industry: "AI / Computer Vision",
-    title: "Real-time Edge Facial Detection and WebSockets Multi-Camera Tracking",
-    excerpt: "Multi-camera computer vision architecture combining OpenCV, Dlib 68-point facial landmark embeddings, edge Flask camera micro-services, and real-time Socket.IO alerts on a central web dashboard.",
+    client: "Campus Security & Facility Operations",
+    industry: "AI / Computer Vision & IoT",
+    title: "God's Eye — Distributed Edge Facial Recognition & Multi-Camera Tracking Network",
+    excerpt: "Multi-camera computer vision architecture deploying lightweight Flask edge nodes on camera feeds to extract 68-point facial landmark vectors and push real-time sub-500ms Socket.IO WebSocket alerts to a central dashboard.",
     image: "/gods_eye.jpg",
     hue: "violet",
     services: ["AI/ML", "Web", "IoT"],
-    results: [["Real-Time", "Socket.IO WebSockets"], ["Dlib + OpenCV", "Edge Embeddings"], ["Multi-Camera", "Unified Command UI"]],
-    challenge: "Locating authorized individuals or missing persons across multi-camera facility networks typically requires costly proprietary hardware and manual video monitoring.",
+    results: [["< 500ms", "Edge-to-Dashboard Alert Speed"], ["68-Point", "Facial Landmark Vectors"], ["Plug & Play", "Edge Node Camera Registration"]],
+    challenge: "Locating targeted individuals or missing persons across multi-camera campus networks typically requires expensive proprietary hardware servers or manual, error-prone video feed monitoring.",
     approach: [
-      "Facial Embedding Pipeline: Used Python and Dlib to extract 68-point facial landmarks and store vector embeddings in a centralized database.",
-      "Edge Camera Micro-Services: Built lightweight Flask services running on local camera feeds to detect faces using OpenCV and match vector signatures on the edge.",
-      "Low-Latency Socket.IO Alerts: Integrated Python-SocketIO to push instantaneous WebSocket notifications to the command dashboard whenever a target is identified.",
-      "Interactive Command Center: Built a live frontend dashboard displaying camera coordinates, timestamp logs, and snapshot matches."
+      "Decoupled Edge Computing Topology: Reduced central server load and bandwidth consumption by deploying localized camera edge nodes (Python, Flask) that capture live feeds and extract 68-point facial landmark vectors on the edge using dlib and OpenCV.",
+      "Sub-Second Socket.IO WebSocket Event Pipeline: Integrated bi-directional Socket.IO / Engine.IO WebSockets to push immediate detection alerts, camera location IDs, and timestamp logs to central security dashboards without polling delay.",
+      "Centralized Target Profile Registry: Maintained a central database storing target facial embeddings, camera registry configurations, and historical location tracking logs for audit trails.",
+      "Spatial Command Dashboard: Built an interactive security command interface enabling administrators to search target individuals, enroll face profiles, view live camera alerts, and trace movement paths."
     ],
-    outcome: "Deployed a distributed computer vision tracking system capable of real-time multi-camera detection and instant WebSocket alert delivery."
+    outcome: "Deployed a distributed edge tracking network delivering sub-500ms real-time multi-camera target detection alerts with minimal network bandwidth usage."
   }
 ];
 
