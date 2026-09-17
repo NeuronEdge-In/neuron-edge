@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "brand": "node scripts/brand-assets.mjs",
+    "covers": "node scripts/blog-covers.mjs",
     "test:smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
