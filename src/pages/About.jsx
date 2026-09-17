@@ -19,7 +19,7 @@ export default function About() {
             <Reveal delay={0.1} className="split__text">
               <p className="lead">NeuronEdge started in 2016 with two founders, one laptop each and a simple promise: build software that actually launches. Our first client was a local retailer who needed an online store in six weeks. It shipped in five.</p>
               <p className="muted" style={{ marginTop: "1rem" }}>That promise scaled. We added mobile, then cloud, then data and AI practices — always led by engineers who had shipped it before. In 2022 we launched EdgeFlow, our first product, and today four NeuronEdge products are used by hundreds of businesses.</p>
-              <p className="muted" style={{ marginTop: "1rem" }}>Today we're 120+ people across {company.offices.join(", ")}, with 250+ projects delivered for startups, scale-ups and Fortune 500 enterprises.</p>
+              <p className="muted" style={{ marginTop: "1rem" }}>Today we're 120+ people across {company.offices.join(", ")}, with 25+ projects delivered for startups, scale-ups and Fortune 500 enterprises.</p>
             </Reveal>
           </div>
         </div>

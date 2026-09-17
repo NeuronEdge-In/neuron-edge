@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand">
-            <Logo size={38} id="footer" />
+            <Logo size={40} tagline stacked />
             <p className="muted" style={{ marginTop: "1.2rem", maxWidth: 320 }}>
               We design, build and scale web, mobile, cloud and AI products for ambitious companies worldwide.
             </p>

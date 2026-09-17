@@ -31,7 +31,7 @@ export default function Projects() {
                       <div className="work-card__client">{p.client} · {p.industry} · {p.year}</div>
                       <h3 className="h-md" style={{ fontSize: "1.2rem" }}>{p.title}</h3>
                       <p className="muted" style={{ marginTop: "0.5rem", fontSize: "0.9rem" }}>{p.summary}</p>
-                      <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "0.9rem" }}>{p.tech.map((t) => <span key={t} className="tag">{t}</span>)}</div>
+                      <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "0.9rem" }}>{(p.tech || []).map((t) => <span key={t} className="tag">{t}</span>)}</div>
                     </div>
                   </Link>
                 </motion.div>
@@ -55,8 +55,8 @@ export function ProjectDetail() {
   return (
     <>
       <PageHero eyebrow={`${p.client} · ${p.industry} · ${p.year}`} title={p.title} lead={p.summary}>
-        <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "1.5rem" }}>{p.tech.map((t) => <span key={t} className="tag">{t}</span>)}</div>
-        {(p.externalUrl || p.playStoreUrl) && (
+        {p.tech?.length > 0 && <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "1.5rem" }}>{p.tech.map((t) => <span key={t} className="tag">{t}</span>)}</div>}
+        {(p.externalUrl || p.playStoreUrl || p.appStoreUrl) && (
           <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
             {p.externalUrl && (
               <a href={p.externalUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
@@ -68,15 +68,22 @@ export function ProjectDetail() {
                 Google Play Store <Icon name="arrow" size={16} />
               </a>
             )}
+            {p.appStoreUrl && (
+              <a href={p.appStoreUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+                Apple App Store <Icon name="arrow" size={16} />
+              </a>
+            )}
           </div>
         )}
       </PageHero>
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <Reveal><Img src={p.image} alt={p.title} ratio="21/9" style={{ borderRadius: 24, border: "1px solid var(--line)" }} /></Reveal>
-          <div className="grid grid-3" style={{ marginTop: "1.25rem" }}>
-            {p.metrics.map(([v, l], i) => <Reveal key={l} delay={i * 0.06} className="stat card"><div className="stat__value">{v}</div><div className="muted">{l}</div></Reveal>)}
-          </div>
+          {p.metrics?.length > 0 && (
+            <div className="grid grid-3" style={{ marginTop: "1.25rem" }}>
+              {p.metrics.map(([v, l], i) => <Reveal key={l} delay={i * 0.06} className="stat card"><div className="stat__value">{v}</div><div className="muted">{l}</div></Reveal>)}
+            </div>
+          )}
           <div className="split" style={{ marginTop: "5rem" }}>
             <Reveal><div className="eyebrow">Executive Brief</div><h2 className="h-lg" style={{ fontSize: "2rem" }}>Project Overview</h2></Reveal>
             <Reveal delay={0.1} className="split__text">

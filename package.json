@@ -8,6 +8,7 @@
     "build": "vite build && cp dist/index.html dist/404.html",
     "lint": "eslint .",
     "preview": "vite preview",
+    "brand": "node scripts/brand-assets.mjs",
     "test:smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {

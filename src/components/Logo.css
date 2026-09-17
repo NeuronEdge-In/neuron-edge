@@ -1,0 +1,22 @@
+.logo { display: inline-flex; align-items: center; gap: 0.7em; font-size: var(--logo-size); line-height: 1; }
+.logo__mark {
+  width: var(--logo-size); height: var(--logo-size);
+  flex: none; object-fit: contain;
+  filter: drop-shadow(0 0 calc(var(--logo-size) * 0.22) rgba(34, 211, 238, calc(var(--glow-opacity) * 0.5)));
+  transition: filter 0.4s var(--ease), transform 0.4s var(--ease);
+}
+a:hover .logo__mark, .logo:hover .logo__mark { transform: translateY(-1px) scale(1.03); }
+.logo__text { display: flex; flex-direction: column; gap: 0.3em; min-width: 0; }
+.logo__word {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 0.52em; line-height: 1; letter-spacing: 0.06em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.logo__word span { margin-left: 0.28em; }
+.logo__tagline {
+  font-family: var(--font-mono); font-size: 0.2em; line-height: 1.4;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-3);
+}
+.logo--stacked { flex-direction: column; align-items: flex-start; gap: 0.5em; }
+.logo--stacked .logo__mark { width: calc(var(--logo-size) * 1.5); height: calc(var(--logo-size) * 1.5); }
+@media (max-width: 420px) { .logo__tagline { display: none; } }

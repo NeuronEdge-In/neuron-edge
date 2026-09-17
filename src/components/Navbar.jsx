@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <header className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
       <div className="container nav__inner">
-        <Link to="/" aria-label="NeuronEdge home"><Logo size={34} id="nav" /></Link>
+        <Link to="/" aria-label="NeuronEdge home"><Logo size={44} mark={false} /></Link>
         <nav className="nav__links">
           {nav.map((n) => (
             <NavLink key={n.to} to={n.to} className={({ isActive }) => `nav__link ${isActive ? "is-active" : ""}`}>{n.label}</NavLink>

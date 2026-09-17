@@ -3,9 +3,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import Icon from "../components/Icon";
 import Img from "../components/Img";
-import { Reveal, SectionHead, Counter, SpotlightCard, CTA, Tilt, LogoMarquee } from "../components/ui";
+import { Reveal, SectionHead, Counter, SpotlightCard, CTA, /* Tilt, */ LogoMarquee } from "../components/ui";
 import { partners, techStack } from "../components/Brands";
-import { stats, services, projects, products, process, testimonials, posts, industries } from "../data/company";
+import { stats, services, projects, /* products, */ process, testimonials, posts, industries } from "../data/company";
 import "./Home.css";
 
 const fade = (d = 0) => ({ initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay: d, ease: [0.22, 1, 0.36, 1] } });
@@ -70,7 +70,7 @@ export default function Home() {
 
       {/* PARTNERS */}
       <section className="clients">
-        <div className="container"><p className="clients__label">Partners & platforms we build on</p></div>
+        <div className="container"><p className="clients__label">Platforms we build on</p></div>
         <LogoMarquee items={partners} speed={45} />
       </section>
 
@@ -96,7 +96,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRODUCTS */}
+      {/* PRODUCTS — section hidden for now (see README). Re-enable by removing this comment wrapper.
       <section className="section band" style={{ overflow: "hidden" }}>
         <div className="glow" style={{ width: 500, height: 500, background: "var(--cyan)", left: -200, top: "20%", opacity: 0.2 }} />
         <div className="container">
@@ -120,6 +120,7 @@ export default function Home() {
           <Reveal style={{ marginTop: "2rem" }}><Link to="/products" className="btn btn-ghost">Explore all products <Icon name="arrow" size={16} className="arrow" /></Link></Reveal>
         </div>
       </section>
+      */}
 
       {/* PROJECTS */}
       <section className="section">

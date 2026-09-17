@@ -4,6 +4,7 @@ const avatar = (n) => `https://i.pravatar.cc/400?img=${n}`;
 export const company = {
   name: "NeuronEdge",
   tagline: "Engineering digital products that scale",
+  promise: "Powering intelligence, delivering innovation.",
   founded: 2016,
   email: "hello@neuronedge.io",
   phone: "+1 (415) 555-0142",
@@ -19,7 +20,7 @@ export const company = {
 
 export const nav = [
   { label: "Services", to: "/services" },
-  { label: "Products", to: "/products" },
+  // { label: "Products", to: "/products" },  // hidden for now — see README
   { label: "Projects", to: "/projects" },
   { label: "Case Studies", to: "/case-studies" },
   { label: "Blog", to: "/blog" },
@@ -28,10 +29,10 @@ export const nav = [
 ];
 
 export const stats = [
-  { value: 250, suffix: "+", label: "Projects delivered" },
-  { value: 120, suffix: "+", label: "Clients worldwide" },
+  { value: 25, suffix: "+", label: "Projects delivered" },
+  { value: 20, suffix: "+", label: "Clients worldwide" },
   { value: 98, suffix: "%", label: "Client retention" },
-  { value: 9, suffix: "+", label: "Years in business" },
+  { value: 4, suffix: "+", label: "Years in business" },
 ];
 
 export const services = [
@@ -151,7 +152,97 @@ export const projects = [
       "High-performance Redis caching layer (django-redis) delivering sub-15ms entity lookup speeds for high-concurrency POS usage.",
       "Background worker architecture using Celery & Celery Beat for periodic ledger resets and automatic balance migrations."
     ]
-  }
+  },
+  {
+    slug: "starfomo-social-app",
+    title: "Starfomo — Social Media App with Reels & Creator Earnings",
+    client: "Uddesh Singh",
+    category: "Mobile & Social",
+    industry: "Social Media",
+    year: "2025",
+    summary: "A full-featured social networking app where users share posts and short-form reels, chat with friends, and earn from the content they create. Combines a familiar feed-and-reels experience with tagging, location check-ins, rich media capture and a gifting-based creator monetisation layer, wrapped in a gaming, inbox and profile navigation shell.",
+    overview: "Starfomo is a social media platform built around two content formats — long-scroll posts and full-screen vertical reels — with a creator earnings layer built in from the start. Members compose posts with granular audience control, attach photos, video, audio notes, tags and locations, and react through a multi-signal engagement model (likes, comments, shares, views, saves and star/flame counters). Alongside the social feed, the app carries dedicated Gaming, Inbox and Profile sections, and a gifting mechanic that lets audiences reward creators directly for the content they publish.",
+    tech: ["React.js", "Node.js", "MongoDB", "Flutter", "AWS", "Cloudflare"],
+    image: "/starfomo.png",
+    hue: "lime",
+    // TODO: two more headline numbers to complete the three-up row
+    metrics: [["5K+", "Downloads"]],
+    externalUrl: "https://starfomo.com",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.starfomo.socialapp",
+    appStoreUrl: "https://apps.apple.com/in/app/starfomo/id6757744625",
+    features: [
+      "Dual-Format Content Feed: Pairs a scrollable post timeline with a full-screen vertical reels player, letting members switch between long-form social updates and short-form video without leaving the app.",
+      "Rich Composer with Audience Control: Post creation supports camera capture, gallery images, video, voice notes, location check-ins and custom tags, with a per-post visibility selector (Public and friend-scoped audiences) set before publishing.",
+      "Creator Earnings & Gifting: Audiences reward creators directly through in-app gifts and star awards on posts and reels, turning engagement into a measurable earnings stream for active publishers.",
+      "Multi-Signal Engagement Model: Every piece of content tracks likes, reactions, comments, shares, views, saves and star counts independently, giving creators a richer read on performance than a single like count.",
+      "Friends and Suggested Discovery: The feed splits into a Friends timeline and an algorithmic Suggest stream, with inline follow actions and verified-creator badges to support audience growth.",
+      "Integrated Gaming, Inbox and Profile Shell: A persistent bottom navigation carries Home, Gaming, Reels, Inbox and Profile, keeping direct messaging and games alongside the social feed in a single app."
+    ]
+  },
+  {
+    slug: "zolemate-matrimony",
+    title: "ZoleMate — Matrimony & Matchmaking Platform",
+    client: "ZoleMate",
+    category: "Mobile & Web",
+    industry: "Matrimony & Relationships",
+    year: "2025",
+    summary: "A modern matrimonial platform that pairs verified profiles with preference-driven matchmaking. Members build a detailed profile, set partner criteria across community, education, profession and lifestyle, and connect only after mutual interest — with privacy controls, photo protection and human-moderated verification keeping the experience safe on both sides.",
+    overview: "ZoleMate is a matrimony and matchmaking product built for families and individuals who want the reach of an online platform without the noise of casual dating apps. The system combines a structured profile model — personal, family, education, career, lifestyle and horoscope details — with a weighted matching engine that ranks candidates against each member's stated partner preferences. Trust is engineered in rather than bolted on: profiles pass document verification before going live, photos stay protected until a member grants access, and contact details are revealed only on a mutual accepted interest. A subscription layer gates outreach volume, and a moderation console gives the operations team the tooling to review, approve, flag and escalate profiles at scale.",
+    tech: ["Flutter", "React.js", "Node.js", "MongoDB", "Elasticsearch", "Redis", "AWS", "Razorpay"],
+    image: "/zolemate.png",
+    hue: "violet",
+    metrics: [["Verified", "Profiles Only"], ["Mutual", "Interest Gating"], ["Multi-Tier", "Subscription Plans"]],
+    externalUrl: null,
+    playStoreUrl: null,
+    features: [
+      "Structured Profile Builder with Document Verification: Members complete a staged profile covering personal, family, education, career, lifestyle and horoscope details. Every profile passes identity-document review and moderator approval before it becomes discoverable, so the searchable pool stays genuine.",
+      "Preference-Weighted Matching Engine: Rather than a single compatibility score, the engine ranks candidates on weighted criteria — community, mother tongue, education, profession, location, diet and family type — and surfaces daily recommendations that adapt as a member shortlists, skips or blocks profiles.",
+      "Privacy-First Photo and Contact Controls: Profile photos can be blurred, watermarked or restricted to accepted connections, and phone numbers and email addresses stay hidden until both sides have accepted an interest, removing the cold-outreach problem common to matrimonial sites.",
+      "Interest, Shortlist and Guarded Chat Flow: Connections progress through an explicit funnel — shortlist, express interest, mutual accept, then chat — so conversation only opens between two members who have each opted in. Chat carries report and block actions on every thread.",
+      "Horoscope and Kundli Compatibility: Members optionally attach birth details for astrological matching, with guna-milan style scoring presented alongside the preference match so families can weigh both signals side by side.",
+      "Subscription Plans and Payment Handling: Tiered plans govern how many interests, contact reveals and chat threads a member can open per cycle, with online payment, invoicing, plan upgrades and renewal reminders handled in-app.",
+      "Moderation and Operations Console: The back-office gives the trust team queues for pending verifications, reported profiles and flagged photos, plus member search, plan overrides, activity history and audit trails on every moderation action."
+    ],
+    architecture: [
+      "Search and Ranking on a Dedicated Index: Profile documents are projected into an Elasticsearch index tuned for the matrimonial query shape — many low-cardinality filters combined with a weighted relevance score — keeping multi-criteria searches responsive as the profile base grows, while MongoDB remains the system of record for profile and transaction data.",
+      "Privacy Enforced at the API Boundary: Contact details, photo URLs and horoscope data are stripped server-side based on the viewer's relationship to the profile owner, so a restricted field is never serialised into a response rather than merely hidden in the client. Signed, short-lived URLs gate every protected media asset.",
+      "Cross-Platform Client with a Shared Design System: A single Flutter codebase serves the Android and iOS apps while a React web app covers desktop browsing and the moderation console, with both clients consuming the same versioned REST contract and a shared token and component vocabulary.",
+      "Event-Driven Notification Fan-Out: Interests, accepts, plan expiries and new-match digests are published as domain events and consumed by a notification worker that fans out to push, SMS and email with per-channel rate limits, keeping delivery out of the request path."
+    ]
+  },
+  {
+    slug: "arya-taray-foundation",
+    title: "Arya Taray Foundation — National Monastic & Spiritual Platform",
+    client: "Arya Taray Foundation",
+    category: "Web & Fintech",
+    industry: "Nonprofit & Spiritual Services",
+    year: "2025",
+    summary: "A nationwide digital ecosystem for Bhutan's premier Buddhist monastic foundation, featuring recurring pledge collection, ritual booking catalogs, event management across 20 Dzongkhags, and real-time executive analytics.",
+    overview: "Arya Taray Foundation is a national-scale spiritual and monastic management ecosystem engineered for one of Bhutan's premier Buddhist foundations under the spiritual guidance of Khen Rinpoche. Serving all 20 Dzongkhags across the Kingdom of Bhutan, the platform centralises online ritual and puja bookings, multi-year recurring donation pledges with automated reminders, cross-district monastic event calendars, and enterprise analytics with cryptographic backup and restore. The foundation needed to modernise traditional community outreach, manage complex multi-year donor pledges across all 20 districts, digitise centuries-old ritual scheduling, and deliver high-transparency financial accounting — all without adding administrative burden to monastic staff. The answer was a dual-layer platform: a culturally resonant public portal carrying the donation and booking workflows, backed by a high-throughput Django REST API with in-memory multi-threaded caching, automated pledge reminder queues, and a full staff CRM dashboard.",
+    tech: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Radix / shadcn UI", "Django 5.x", "Django REST Framework", "PostgreSQL", "SimpleJWT", "Gunicorn (gthread)"],
+    image: "/aryataray.jpg",
+    hue: "lime",
+    metrics: [["20 / 20", "Dzongkhags Covered"], ["< 45ms", "Dashboard Query Latency"], ["99.4%", "Cache Hit Efficiency"]],
+    externalUrl: "https://aryataray.bt/",
+    playStoreUrl: null,
+    features: [
+      "Multi-Tier Offering Workflows with 1-10 Year Pledges: Supports spontaneous one-time contributions alongside structured multi-year recurring pledge commitments, with built-in tracking that monitors pledge maturities, triggers renewal reminders, and reconciles pledged amounts against actual collection records.",
+      "Citizen ID and Dzongkhag-Indexed Donor Records: Donors are indexed by Bhutanese CID and home district, giving the foundation structured demographic insight into community giving patterns across the Kingdom.",
+      "Multi-Channel Payment Intent Processing: Structured to accommodate Bhutanese local banking rails (Royal Monetary Authority / BFS, mBoB, B-Wallet, bank transfer) alongside international cards, with BTN and USD currency routing.",
+      "Transparent Fund Allocation Engine: Donors and administrators allocate contributions across specific initiatives — Spiritual Programs, Temple Maintenance, Monastic Welfare and Cultural Preservation — with the breakdown visible on both sides of the transaction.",
+      "Ritual and Puja Booking Catalog: A real-time catalog of prayer ceremonies, longevity blessings, funeral and memorial pujas and custom ritual requests, priced in Ngultrum, with a multi-step public booking flow for auspicious dates and preferred monastic venues.",
+      "Staff Booking Lifecycle and Automated Confirmations: Every request moves through a Pending to Confirmed to Completed or Cancelled pipeline, with automated email triggers on each transition and private internal notes for coordinating staff.",
+      "Nationwide Event Calendar Across 20 Dzongkhags: An interactive calendar maps retreats, public teachings and community ceremonies by district, with admin controls for live participant headcounts and event-specific fundraising tallies, and time-aware logic that cycles events from upcoming to past automatically.",
+      "Executive Analytics and Donor CRM: A consolidated dashboard endpoint aggregates total donations, active donor counts, month-over-month change velocities and category distributions, backed by a donor directory with lifetime contribution totals, contribution-count badges and one-click export.",
+      "Superuser Disaster Recovery Suite: One-click ZIP snapshots capture the full relational schema and media assets, and restoration is gated behind cryptographic confirmation tokens that verify record counts and superuser permissions before any point-in-time restore executes."
+    ],
+    architecture: [
+      "Single-Trip Analytics Endpoint with Granular In-Memory Caching: A custom backend populator assembles the entire executive dashboard in one sub-50ms query rather than a fan-out of per-widget requests, fronted by a 30-second local-memory cache that shields the production PostgreSQL instance from reporting load during high-traffic festival periods.",
+      "Multi-Threaded Cache Invalidation via Commit Signals: The Gunicorn gthread workers share a local-memory cache keyed by SHA-256 URL fingerprints, with Django commit signals driving targeted invalidation so a donation write expires exactly the report keys it affects instead of flushing the whole cache.",
+      "Compound-Indexed PostgreSQL Schema for Reporting Shapes: B-tree compound indexes on [status, created_at] and [donation_type, status] are tuned to the platform's actual query patterns — high-volume date-range reporting sweeps and donor CID lookups — keeping both fast as the record base grows.",
+      "Role-Separated JWT Security Model: SimpleJWT token lifecycle management with auto-logout separates staff coordinator permissions from superuser disaster-recovery rights, enforced alongside strict CORS isolation and CID data sanitisation on every serialised response."
+    ]
+  },
 ];
 
 export const caseStudies = [
@@ -256,7 +347,7 @@ export const milestones = [
   { year: "2020", text: "Cloud & DevOps practice; London office opens." },
   { year: "2022", text: "Launched EdgeFlow, our first SaaS product. Bengaluru hub opens." },
   { year: "2024", text: "AI & ML practice; 100th client; Dubai office." },
-  { year: "2026", text: "250+ projects delivered, 4 products, 120+ people." },
+  { year: "2026", text: "25+ projects delivered, 4 products, 120+ people." },
 ];
 
 export const jobs = [
