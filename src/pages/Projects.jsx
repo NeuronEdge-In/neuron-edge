@@ -51,11 +51,17 @@ export function ProjectDetail() {
   if (idx === -1) return <Navigate to="/projects" replace />;
   const p = projects[idx];
   const next = projects[(idx + 1) % projects.length];
-  const logos = techStack.filter((t) => p.tech.some((x) => t.name.toLowerCase().startsWith(x.toLowerCase().split(" ")[0])));
+  const logos = techStack.filter((t) =>
+    p.tech.some((x) => {
+      const item = x.toLowerCase();
+      const tName = t.name.toLowerCase();
+      return item.includes(tName) || tName.includes(item.split(" ")[0]) || item.split(" ")[0] === tName.split(" ")[0];
+    })
+  );
   return (
     <>
       <PageHero eyebrow={`${p.client} · ${p.industry} · ${p.year}`} title={p.title} lead={p.summary}>
-        {p.tech?.length > 0 && <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "1.5rem" }}>{p.tech.map((t) => <span key={t} className="tag">{t}</span>)}</div>}
+        {p.tech?.length > 0 && <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "1.5rem" }}>{p.tech.map((t) => <span key={t} className="tag" style={{ borderColor: "var(--line-strong)" }}>{t}</span>)}</div>}
         {(p.externalUrl || p.playStoreUrl || p.appStoreUrl) && (
           <div style={{ display: "flex", gap: "1rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
             {p.externalUrl && (
@@ -136,11 +142,32 @@ export function ProjectDetail() {
               </Reveal>
             </div>
           )}
-          {logos.length > 0 && (
-            <Reveal style={{ marginTop: "4rem" }}>
-              <div className="eyebrow">Tech stack</div>
-              <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", marginTop: "1rem" }}>{logos.map((t) => <span key={t.name} className="logo-row"><BrandIcon icon={t} />{t.name}</span>)}</div>
-            </Reveal>
+          {p.tech?.length > 0 && (
+            <div className="split" style={{ marginTop: "4rem" }}>
+              <Reveal>
+                <div className="eyebrow">Technology & Tooling</div>
+                <h2 className="h-lg" style={{ fontSize: "2rem" }}>Full Technology Stack</h2>
+              </Reveal>
+              <Reveal delay={0.1} className="split__text">
+                {logos.length > 0 && (
+                  <div style={{ display: "flex", gap: "1.2rem 2rem", flexWrap: "wrap", marginBottom: "1.8rem" }}>
+                    {logos.map((t) => (
+                      <span key={t.name} className="logo-row" style={{ fontSize: "0.95rem", fontWeight: 500, color: "var(--fg)" }}>
+                        <BrandIcon icon={t} size={24} />
+                        {t.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                  {p.tech.map((t) => (
+                    <span key={t} className="tag" style={{ fontSize: "0.82rem", padding: "0.45rem 0.9rem", borderColor: "var(--line-strong)", background: "rgba(var(--fg-rgb), 0.04)" }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
           )}
         </div>
       </section>

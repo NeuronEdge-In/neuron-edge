@@ -29,7 +29,7 @@ export default function Blog() {
                   <div className="post-card__meta"><span className="tag">{featured.category}</span><span>{fmt(featured.date)} · {featured.read}</span></div>
                   <h2 className="h-md" style={{ fontSize: "1.8rem", marginTop: "1rem" }}>{featured.title}</h2>
                   <p className="muted" style={{ marginTop: "0.8rem" }}>{featured.excerpt}</p>
-                  <div className="author" style={{ marginTop: "1.2rem" }}><Img src={featured.authorImg} alt={featured.author} className="author__img" /><span>{featured.author}</span></div>
+                  <div className="author" style={{ marginTop: "1.2rem" }}><Img src={featured.authorImg} alt={featured.author} className="author__img" style={{ background: "rgba(var(--fg-rgb), 0.05)", padding: 3 }} /><span>{featured.author}</span></div>
                 </div>
               </Link>
             </Reveal>
@@ -44,7 +44,7 @@ export default function Blog() {
                       <div className="post-card__meta"><span className="tag">{p.category}</span><span>{p.read}</span></div>
                       <h3 className="h-md" style={{ fontSize: "1.15rem", marginTop: "0.8rem" }}>{p.title}</h3>
                       <p className="muted" style={{ fontSize: "0.9rem", marginTop: "0.5rem" }}>{p.excerpt}</p>
-                      <div className="author" style={{ marginTop: "1rem" }}><Img src={p.authorImg} alt={p.author} className="author__img" /><span>{p.author} · {fmt(p.date)}</span></div>
+                      <div className="author" style={{ marginTop: "1rem" }}><Img src={p.authorImg} alt={p.author} className="author__img" style={{ background: "rgba(var(--fg-rgb), 0.05)", padding: 3 }} /><span>{p.author} · {fmt(p.date)}</span></div>
                     </div>
                   </Link>
                 </motion.div>
@@ -75,7 +75,7 @@ export function BlogPost() {
   return (
     <>
       <PageHero eyebrow={`${p.category} · ${fmt(p.date)} · ${p.read} read`} title={p.title} lead={p.excerpt}>
-        <div className="author" style={{ marginTop: "1.6rem" }}><Img src={p.authorImg} alt={p.author} className="author__img author__img--lg" /><div><strong>{p.author}</strong><div className="muted" style={{ fontSize: "0.8rem" }}>NeuronEdge</div></div></div>
+        <div className="author" style={{ marginTop: "1.6rem" }}><Img src={p.authorImg} alt={p.author} className="author__img author__img--lg" style={{ background: "rgba(var(--fg-rgb), 0.05)", padding: 6 }} /><div><strong>{p.author}</strong><div className="muted" style={{ fontSize: "0.8rem" }}>Engineering & Insights</div></div></div>
       </PageHero>
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">

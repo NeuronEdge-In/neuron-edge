@@ -18,13 +18,24 @@ export default function Services() {
               <div className="service__idx">0{i + 1}</div>
               <div className="service__main">
                 <div className="service__icon"><Icon name={s.icon} size={26} /></div>
-                <h2 className="h-lg" style={{ fontSize: "clamp(1.6rem,3vw,2.4rem)" }}>{s.title}</h2>
-                <p className="lead" style={{ marginTop: "0.8rem" }}>{s.short}</p>
+                <h2 className="h-lg" style={{ fontSize: "clamp(1.5rem,2.5vw,2.1rem)" }}>{s.title}</h2>
+                <p className="lead" style={{ marginTop: "0.6rem", fontSize: "1.05rem" }}>{s.short}</p>
+                {s.description && (
+                  <p className="service__desc">{s.description}</p>
+                )}
+                {s.tech && s.tech.length > 0 && (
+                  <div className="service__tech">
+                    {s.tech.map((t) => (
+                      <span key={t} className="service__tech-tag">{t}</span>
+                    ))}
+                  </div>
+                )}
               </div>
-              <div>
+              <div className="service__side">
                 <Img src={s.image} alt={s.title} ratio="16/9" hover style={{ borderRadius: 16, border: "1px solid var(--line)", marginBottom: "1.2rem" }} />
+                <div className="service__cap-title">Core Deliverables & Standards</div>
                 <ul className="service__list">
-                  {s.bullets.map((b) => <li key={b}><Icon name="check" size={16} /> {b}</li>)}
+                  {s.bullets.map((b) => <li key={b}><Icon name="check" size={16} /> <span>{b}</span></li>)}
                 </ul>
               </div>
             </Reveal>

@@ -1,5 +1,6 @@
 import { siGooglecloud, siVercel, siStripe, siShopify, siHubspot, siAtlassian, siGithub, siDigitalocean, siCloudflare, siNotion, siAuth0, siZapier, siSupabase,
-  siReact, siNextdotjs, siTypescript, siNodedotjs, siFlutter, siKotlin, siSwift, siPython, siPytorch, siTensorflow, siDocker, siKubernetes, siPostgresql, siMongodb, siGraphql, siFirebase, siTerraform, siFigma } from "simple-icons";
+  siReact, siNextdotjs, siTypescript, siNodedotjs, siFlutter, siKotlin, siSwift, siPython, siPytorch, siTensorflow, siDocker, siKubernetes, siPostgresql, siMongodb, siGraphql, siFirebase, siTerraform, siFigma,
+  siDjango, siRedis, siFastify, siExpo, siUpstash, siTailwindcss, siVite, siCelery, siBootstrap, siSqlite } from "simple-icons";
 
 const brand = (icon, name, color) => ({ name: name || icon.title, path: icon.path, color: color || `#${icon.hex}` });
 // Neutral colour for near-black brand marks so they stay visible in dark mode.
@@ -11,8 +12,11 @@ export const partners = [
 ];
 
 export const techStack = [
-  brand(siReact), brand(siNextdotjs, "Next.js", N), brand(siTypescript), brand(siNodedotjs, "Node.js"), brand(siFlutter), brand(siKotlin), brand(siSwift), brand(siPython), brand(siPytorch),
-  brand(siTensorflow), brand(siDocker), brand(siKubernetes), brand(siPostgresql), brand(siMongodb), brand(siGraphql), brand(siFirebase), brand(siTerraform), brand(siFigma),
+  brand(siReact), brand(siNextdotjs, "Next.js", N), brand(siTypescript), brand(siNodedotjs, "Node.js"), brand(siDjango, "Django", "#44B78B"), brand(siFastify, "Fastify", N),
+  brand(siFlutter), brand(siExpo, "Expo", N), brand(siKotlin), brand(siSwift), brand(siPython), brand(siPytorch), brand(siTensorflow),
+  brand(siPostgresql), brand(siRedis, "Redis", "#FF4438"), brand(siUpstash, "Upstash", "#00E9A3"), brand(siMongodb), brand(siSqlite, "SQLite", "#0EA5E9"),
+  brand(siDocker), brand(siKubernetes), brand(siTerraform), brand(siTailwindcss, "Tailwind CSS", "#06B6D4"), brand(siVite, "Vite", "#9135FF"),
+  brand(siCelery, "Celery", "#37814A"), brand(siBootstrap, "Bootstrap", "#7952B3"), brand(siGraphql), brand(siFirebase), brand(siFigma),
 ];
 
 export function BrandIcon({ icon, size = 28, style }) {

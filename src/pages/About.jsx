@@ -7,19 +7,19 @@ import "./Pages.css";
 export default function About() {
   return (
     <>
-      <PageHero eyebrow="About NeuronEdge" title={<>A technology partner that <span className="grad-text">ships.</span></>} lead={`Founded in ${company.founded}, NeuronEdge is an IT services and product company of 120+ engineers, designers and strategists. We build web, mobile, cloud and AI solutions — and our own SaaS products — for companies in ${company.offices.length} regions.`} />
+      <PageHero eyebrow="About NeuronEdge" title={<>A technology partner that <span className="grad-text">ships.</span></>} lead="Founded in 2022 by two engineer brothers, NeuronEdge is a digital engineering studio delivering full-stack web, mobile, cloud and AI/ML platforms for businesses and startups worldwide." />
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="split">
             <Reveal>
               <div className="eyebrow">Our story</div>
-              <h2 className="h-lg">From a two-person studio to a global team.</h2>
+              <h2 className="h-lg">Built on Computer Science Fundamentals & Enterprise Rigor.</h2>
             </Reveal>
             <Reveal delay={0.1} className="split__text">
-              <p className="lead">NeuronEdge started in 2016 with two founders, one laptop each and a simple promise: build software that actually launches. Our first client was a local retailer who needed an online store in six weeks. It shipped in five.</p>
-              <p className="muted" style={{ marginTop: "1rem" }}>That promise scaled. We added mobile, then cloud, then data and AI practices — always led by engineers who had shipped it before. In 2022 we launched EdgeFlow, our first product, and today four NeuronEdge products are used by hundreds of businesses.</p>
-              <p className="muted" style={{ marginTop: "1rem" }}>Today we're 120+ people across {company.offices.join(", ")}, with 25+ projects delivered for startups, scale-ups and Fortune 500 enterprises.</p>
+              <p className="lead">NeuronEdge was founded four years ago by two brothers with a shared vision: to build reliable, high-performance software with zero engineering fluff. Following the completion of an MSc in Computer Science in Bangalore in 2022, we set out to build digital products combining deep computational theory with modern software agility.</p>
+              <p className="muted" style={{ marginTop: "1rem" }}>While working as software engineers across global multinational corporations (MNCs), we gained extensive experience in enterprise-scale systems, distributed data pipelines, and robust security practices. We brought that exact engineering standard to NeuronEdge, architecting and shipping mission-critical systems for clients across logistics, non-profit foundations, healthcare, and enterprise ERP.</p>
+              <p className="muted" style={{ marginTop: "1rem" }}>Today, our engineering practice is at the cutting edge of AI/ML integration — embedding Large Language Models (LLMs), RAG architectures, computer vision models, and intelligent automation workflows directly into production systems that scale.</p>
             </Reveal>
           </div>
         </div>
@@ -27,13 +27,23 @@ export default function About() {
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
-          <Reveal className="about__gallery">
-            <Img src="https://picsum.photos/seed/ne-office-1/1000/900" alt="NeuronEdge office" hover style={{ borderRadius: 18, height: "100%" }} />
-            <Img src="https://picsum.photos/seed/ne-office-2/600/400" alt="Team workshop" hover style={{ borderRadius: 18 }} />
-            <Img src="https://picsum.photos/seed/ne-office-3/600/400" alt="Design review" hover style={{ borderRadius: 18 }} />
-            <Img src="https://picsum.photos/seed/ne-office-4/600/400" alt="Engineering" hover style={{ borderRadius: 18 }} />
-            <Img src="https://picsum.photos/seed/ne-office-5/600/400" alt="Team retreat" hover style={{ borderRadius: 18 }} />
-          </Reveal>
+          <SectionHead eyebrow="Engineering Pillars" title="How we engineer for production scale." />
+          <div className="grid grid-2" style={{ marginTop: "2rem" }}>
+            {[
+              { num: "01", title: "Applied AI & LLM Systems", text: "Production RAG pipelines, autonomous agentic workflows, custom vector embeddings, and real-time computer vision inference with sub-second latencies." },
+              { num: "02", title: "Full-Stack Architecture", text: "High-performance React 19 web applications, cross-platform React Native & Expo mobile clients, Django REST, and Fastify microservices." },
+              { num: "03", title: "Serverless & Distributed Data", text: "PostgreSQL with compound indexing and UUIDv7, Upstash Redis caching, serverless event-driven queues (QStash), and Docker containerization." },
+              { num: "04", title: "Enterprise Craftsmanship", text: "Clean architecture, end-to-end type safety, automated CI/CD testing pipelines, and observable systems engineered for long-term maintainability." },
+            ].map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.06}>
+                <SpotlightCard style={{ height: "100%", padding: "2rem" }}>
+                  <div className="value__num" style={{ fontSize: "0.9rem" }}>{p.num}</div>
+                  <h3 className="h-md" style={{ fontSize: "1.25rem" }}>{p.title}</h3>
+                  <p className="muted" style={{ marginTop: "0.6rem", lineHeight: "1.6" }}>{p.text}</p>
+                </SpotlightCard>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -52,7 +62,7 @@ export default function About() {
 
       <section className="section">
         <div className="container">
-          <SectionHead eyebrow="Values" title="Four principles we hire, build and ship by." />
+          <SectionHead eyebrow="Values" title="Four principles we architect, build and ship by." />
           <div className="grid grid-2">
             {values.map((v, i) => (
               <Reveal key={v.title} delay={i * 0.06}>
@@ -82,6 +92,7 @@ export default function About() {
         </div>
       </section>
 
+      {/* LEADERSHIP SECTION — hidden for now — see README
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="split">
@@ -90,6 +101,7 @@ export default function About() {
           </div>
         </div>
       </section>
+      */}
       <CTA title="Want to know how we'd approach your project?" />
     </>
   );

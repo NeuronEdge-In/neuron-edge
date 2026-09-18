@@ -13,13 +13,15 @@ export default function Footer() {
             <p className="muted" style={{ marginTop: "1.2rem", maxWidth: 320 }}>
               We design, build and scale web, mobile, cloud and AI products for ambitious companies worldwide.
             </p>
+            {/* Social media links hidden for now — see README / data/company.js
             <div className="footer__socials">
               {company.socials.map((s) => <a key={s.label} href={s.href} target="_blank" rel="noreferrer">{s.label}</a>)}
             </div>
+            */}
           </div>
           <div>
             <h4 className="footer__title">Company</h4>
-            {[{ label: "Home", to: "/" }, ...nav, { label: "Team", to: "/team" }, { label: "Careers", to: "/careers" }].map((n) => <Link key={n.to} to={n.to} className="footer__link">{n.label}</Link>)}
+            {[{ label: "Home", to: "/" }, ...nav /* , { label: "Team", to: "/team" }, { label: "Careers", to: "/careers" } */].map((n) => <Link key={n.to} to={n.to} className="footer__link">{n.label}</Link>)}
           </div>
           <div>
             <h4 className="footer__title">Services</h4>
@@ -35,7 +37,7 @@ export default function Footer() {
         </div>
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} {company.name}, Inc. All rights reserved.</span>
-          <span className="footer__meta">ISO 27001 · SOC 2 Type II · GDPR · AWS Partner</span>
+          {/* <span className="footer__meta">ISO 27001 · SOC 2 Type II · GDPR · AWS Partner</span> */}
         </div>
       </div>
     </footer>

@@ -143,6 +143,12 @@ export default function Home() {
                     <div className="work-card__results">
                       {p.metrics.slice(0, 2).map(([v, l]) => <div key={l}><strong>{v}</strong><span>{l}</span></div>)}
                     </div>
+                    {p.tech?.length > 0 && (
+                      <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "0.9rem" }}>
+                        {p.tech.slice(0, 4).map((t) => <span key={t} className="tag">{t}</span>)}
+                        {p.tech.length > 4 && <span className="tag" style={{ color: "var(--cyan)" }}>+{p.tech.length - 4} more</span>}
+                      </div>
+                    )}
                   </div>
                 </Link>
               </Reveal>
@@ -203,8 +209,11 @@ export default function Home() {
                   <div className="quote__stars">{[0, 1, 2, 3, 4].map((k) => <Icon key={k} name="star" size={14} />)}</div>
                   <p className="quote__text">“{t.quote}”</p>
                   <div className="quote__who">
-                    <Img src={t.img} alt={t.name} className="quote__avatar" />
-                    <div><strong>{t.name}</strong><span>{t.org}</span></div>
+                    <div className="quote__badge" data-i={i}>{t.name.split(" ").map((w) => w[0]).join("")}</div>
+                    <div className="quote__info">
+                      <strong className="quote__name">{t.name}</strong>
+                      <span className="quote__meta">{t.role} · <span className="quote__org">{t.org}</span></span>
+                    </div>
                   </div>
                 </SpotlightCard>
               </Reveal>

@@ -24,28 +24,44 @@ npm run preview  # preview the build
 | `/projects`, `/projects/:slug` | Filterable project portfolio + detail pages |
 | `/case-studies`, `/case-studies/:slug` | In-depth case studies |
 | `/blog`, `/blog/:slug` | Filterable blog + article pages |
-| `/team` | Leadership grid |
-| `/careers` | Open roles, perks, hiring process |
+| `/team` | Leadership grid — **routes live, but unlinked** (see _Commented-out sections_) |
+| `/careers` | Open roles, perks, hiring process — **routes live, but unlinked** (see _Commented-out sections_) |
 | `/contact` | Contact form + company details |
 
 ## Commented-out sections
 
-**Products is currently hidden from the site.** Nothing was deleted — two blocks are commented out, so re-enabling is a matter of removing the comment wrappers:
+The following sections and navigation links are currently hidden/commented out from the site. Nothing was deleted — they are simply commented out, so re-enabling them is a matter of removing the comment wrappers:
 
+### 1. Products Section & Navigation
 | What | Where | How to restore |
 |---|---|---|
 | "Products" nav item (navbar **and** footer, which both read the same `nav` array) | `src/data/company.js` → `nav` | Uncomment the `{ label: "Products", to: "/products" }` line |
 | Homepage products section ("SaaS products born from real client problems") | `src/pages/Home.jsx` | Remove the `{/* PRODUCTS — section hidden for now ... */}` wrapper, then uncomment `Tilt` and `products` in the imports at the top of the file |
 
-Note that `/products` and `/products/:slug` are **still routed** in `src/App.jsx` and still render. They're simply not linked from anywhere, so the pages remain reachable by direct URL. To take them offline properly, comment out those two `<Route>` lines as well.
+### 2. Leadership Section, Team & Careers Links
+| What | Where | How to restore |
+|---|---|---|
+| Leadership section + "Meet the team" & "We're hiring" buttons | `src/pages/About.jsx` | Remove the `{/* LEADERSHIP SECTION — hidden for now ... */}` wrapper around `<section className="section">` |
+| "Team" and "Careers" links in Footer | `src/components/Footer.jsx` | Uncomment `{ label: "Team", to: "/team" }, { label: "Careers", to: "/careers" }` in the Company links array |
+| "Careers" link in Mobile Navigation | `src/components/Navbar.jsx` | Uncomment `{ label: "Careers", to: "/careers" }` in the mobile nav links array |
+
+### 3. Social Media & GitHub Links
+| What | Where | How to restore |
+|---|---|---|
+| Social media & GitHub links (LinkedIn, GitHub, X, Dribbble) in Footer | `src/components/Footer.jsx` & `src/data/company.js` | Uncomment `{/* Social media links ... */}` in `src/components/Footer.jsx` and uncomment the items in the `socials` array in `src/data/company.js` |
+
+> [!NOTE]
+> `/products`, `/team`, and `/careers` are **still routed** in `src/App.jsx` and still render when accessed directly by URL. To take them offline properly, comment out the corresponding `<Route>` lines in `src/App.jsx`.
 
 ## Editing content
 
 All copy, stats, services, products, projects, case studies, blog posts, team, jobs, and contact details live in **`src/data/company.js`**. Edit that single file to update the site.
 
-**Images** are placeholders (`picsum.photos` photos, `i.pravatar.cc` avatars) — replace the `image` / `img` URLs in `company.js` with your own (local files in `public/` work too). Brand logos come from the `simple-icons` package (`src/components/Brands.jsx`).
-
-- Logo: `src/components/Logo.jsx`. Brand images live in `public/brand/` and are generated from the master art in `public/generated_logos/` by `npm run brand` (`scripts/brand-assets.mjs`) — favicons, PWA icons and the social-card image included.
+**Images**:
+- **Services**: Custom high-resolution assets for each practice live in `public/services/` (`web-development.jpg`, `mobile-development.jpg`, `cloud-devops.jpg`, `ai-ml.jpg`, `ui-ux.jpg`, `data-engineering.jpg`, `qa-testing.jpg`, `consulting.jpg`).
+- **Projects & Case Studies**: Real portfolio assets live in `public/`.
+- **Blog**: Visuals live in `public/blog/`.
+- **Logo**: `src/components/Logo.jsx`. Brand images live in `public/brand/` and are generated from the master art in `public/generated_logos/` by `npm run brand` (`scripts/brand-assets.mjs`) — favicons, PWA icons and the social-card image included.
 - Theme colours / fonts: `:root` in `src/styles/global.css`
 - Contact form: `src/pages/Contact.jsx` → replace the `submit` handler with your form backend (Formspree, Resend, HubSpot, etc.)
 

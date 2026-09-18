@@ -52,10 +52,7 @@
 @media (max-width: 900px) { .process__grid { grid-template-columns: 1fr 1fr; } .process__grid::before { display: none; } }
 @media (max-width: 540px) { .process__grid { grid-template-columns: 1fr; } }
 
-.quote__mark { font-family: var(--font-display); font-size: 4rem; line-height: 0.6; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; }
-.quote__text { font-size: 1.05rem; line-height: 1.6; }
-.quote__who { margin-top: 1.5rem; display: flex; flex-direction: column; font-size: 0.85rem; }
-.quote__who span { color: var(--text-3); }
+
 /* hero split + visual */
 .hero__split { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
 .hero__visual { position: relative; height: 560px; }
@@ -88,8 +85,16 @@
 .post-card__body { padding: 1.4rem; }
 .post-card__meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--text-3); font-family: var(--font-mono); }
 
-.quote__stars { display: flex; gap: 2px; color: #f5b301; margin-bottom: 1rem; }
+.quote { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+.quote__stars { display: flex; gap: 3px; color: #f59e0b; margin-bottom: 1.2rem; }
 .quote__stars svg { fill: currentColor; }
-.quote__who { flex-direction: row !important; align-items: center; gap: 0.8rem; }
-.quote__who div { display: flex; flex-direction: column; }
-.quote__avatar { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; }
+.quote__text { font-size: 0.98rem; line-height: 1.65; color: var(--text-2); flex: 1; margin: 0; }
+.quote__who { display: flex; align-items: center; gap: 0.95rem; margin-top: 1.8rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+.quote__badge { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center; font-family: var(--font-mono); font-weight: 700; color: #ffffff; font-size: 0.88rem; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(0,0,0,0.12); }
+.quote__badge[data-i="0"] { background: linear-gradient(135deg, #06b6d4, #2563eb); }
+.quote__badge[data-i="1"] { background: linear-gradient(135deg, #8b5cf6, #d946ef); }
+.quote__badge[data-i="2"] { background: linear-gradient(135deg, #10b981, #0891b2); }
+.quote__info { display: flex; flex-direction: column; gap: 0.15rem; }
+.quote__name { font-family: var(--font-display); font-size: 1.02rem; font-weight: 600; color: var(--text); }
+.quote__meta { font-size: 0.82rem; color: var(--text-3); }
+.quote__org { color: var(--cyan); font-weight: 500; }

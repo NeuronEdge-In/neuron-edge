@@ -42,7 +42,7 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div className="nav__mobile" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }}>
-            {[{ label: "Home", to: "/" }, ...nav, { label: "Careers", to: "/careers" }].map((n, i) => (
+            {[{ label: "Home", to: "/" }, ...nav /* , { label: "Careers", to: "/careers" } */].map((n, i) => (
               <motion.div key={n.to} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.04 * i }}>
                 <NavLink to={n.to} end={n.to === "/"} className={({ isActive }) => `nav__mobile-link ${isActive ? "is-active" : ""}`}>
                   <span className="nav__mobile-num">{String(i + 1).padStart(2, "0")}</span>{n.label}
