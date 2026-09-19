@@ -7,7 +7,7 @@ import "./Pages.css";
 export default function Careers() {
   return (
     <>
-      <PageHero eyebrow="Careers" title={<>Build products used by <span className="grad-text">millions.</span></>} lead="We're hiring across web, mobile, cloud, AI, design, QA and consulting. Remote-first, with hubs in San Francisco, London, Bengaluru and Dubai." />
+      <PageHero eyebrow="Careers" title={<>Build products used by <span className="grad-text">millions.</span></>} lead="We're hiring across web, mobile, cloud, AI, design, QA and consulting. Remote-first, based in India with a global engineering mindset." />
 
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">

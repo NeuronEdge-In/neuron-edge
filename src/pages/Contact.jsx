@@ -6,17 +6,99 @@ import { Reveal, PageHero } from "../components/ui";
 import { company, services } from "../data/company";
 import "./Pages.css";
 
+function CustomSelect({ value, onChange, options, placeholder = "Select…" }) {
+  const [open, setOpen] = useState(false);
+  const ref = useState(null)[0] || { current: null };
+  const containerRef = useState(() => ({ current: null }))[0];
+
+  return (
+    <div
+      className="cselect"
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false);
+      }}
+      tabIndex={-1}
+    >
+      <button
+        type="button"
+        className={`cselect__trigger ${open ? "is-open" : ""} ${!value ? "is-placeholder" : ""}`}
+        onClick={() => setOpen((o) => !o)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        <span>{value || placeholder}</span>
+        <Icon name="chevron" size={16} className={`cselect__arrow ${open ? "is-rotated" : ""}`} />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            className="cselect__menu"
+            role="listbox"
+            initial={{ opacity: 0, y: -6, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            transition={{ duration: 0.16, ease: "easeOut" }}
+          >
+            {options.map((opt) => {
+              const isSelected = opt === value;
+              return (
+                <li
+                  key={opt}
+                  role="option"
+                  aria-selected={isSelected}
+                  className={`cselect__option ${isSelected ? "is-selected" : ""}`}
+                  onClick={() => {
+                    onChange(opt);
+                    setOpen(false);
+                  }}
+                >
+                  <span>{opt}</span>
+                  {isSelected && <Icon name="check" size={14} className="cselect__check" />}
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function Contact() {
   const [params] = useSearchParams();
   const role = params.get("role");
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", company: "", interest: role ? "Careers" : "", budget: "", message: role ? `I'd like to apply for the ${role} role.` : "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    interest: role ? "Careers" : "",
+    budget: "",
+    message: role ? `I'd like to apply for the ${role} role.` : ""
+  });
   const set = (k) => (e) => setForm({ ...form, [k]: e.target.value });
+  const setVal = (k) => (val) => setForm((prev) => ({ ...prev, [k]: val }));
+
+  const interestOptions = [
+    ...services.map((s) => s.title),
+    "Product demo",
+    "Partnership",
+    "Careers",
+    "Other"
+  ];
+
+  const budgetOptions = [
+    "Prefer not to say",
+    "Under $50k",
+    "$50k – $150k",
+    "$150k – $500k",
+    "$500k+"
+  ];
 
   const submit = (e) => {
     e.preventDefault();
-    // TODO: wire to your backend / form service (e.g. Formspree, Resend, HubSpot).
-    console.log("contact form", form);
+    console.log("Contact form submission:", form);
     setSent(true);
   };
 
@@ -32,7 +114,7 @@ export default function Contact() {
                   <div className="contact__check"><Icon name="check" size={28} /></div>
                   <h3 className="h-md">Message received.</h3>
                   <p className="muted" style={{ marginTop: "0.5rem" }}>Thanks, {form.name.split(" ")[0] || "there"}. Someone from the team will be in touch at {form.email}.</p>
-                  <button className="btn btn-ghost" style={{ marginTop: "1.5rem" }} onClick={() => setSent(false)}>Send another</button>
+                  <button className="btn btn-ghost" style={{ marginTop: "1.5rem" }} onClick={() => { setSent(false); setForm({ name: "", email: "", company: "", interest: "", budget: "", message: "" }); }}>Send another</button>
                 </motion.div>
               ) : (
                 <motion.form key="form" onSubmit={submit} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -41,20 +123,26 @@ export default function Contact() {
                     <div className="field"><label>Work email</label><input required type="email" value={form.email} onChange={set("email")} placeholder="ada@company.com" /></div>
                     <div className="field"><label>Company</label><input value={form.company} onChange={set("company")} placeholder="Company, Inc." /></div>
                     <div className="field"><label>Interested in</label>
-                      <select value={form.interest} onChange={set("interest")} required>
-                        <option value="">Select…</option>
-                        {services.map((s) => <option key={s.slug}>{s.title}</option>)}
-                        <option>Product demo</option><option>Partnership</option><option>Careers</option><option>Other</option>
-                      </select>
+                      <CustomSelect
+                        value={form.interest}
+                        onChange={setVal("interest")}
+                        options={interestOptions}
+                        placeholder="Select service or topic…"
+                      />
                     </div>
                     <div className="field" style={{ gridColumn: "1 / -1" }}><label>Budget range (optional)</label>
-                      <select value={form.budget} onChange={set("budget")}>
-                        <option value="">Prefer not to say</option><option>Under $50k</option><option>$50k – $150k</option><option>$150k – $500k</option><option>$500k+</option>
-                      </select>
+                      <CustomSelect
+                        value={form.budget}
+                        onChange={setVal("budget")}
+                        options={budgetOptions}
+                        placeholder="Select budget range…"
+                      />
                     </div>
                     <div className="field" style={{ gridColumn: "1 / -1" }}><label>Message</label><textarea required rows={5} value={form.message} onChange={set("message")} placeholder="What are you trying to build, and what's getting in the way?" /></div>
                   </div>
-                  <button type="submit" className="btn btn-primary" style={{ marginTop: "1.5rem" }}>Send message <Icon name="arrow" size={16} className="arrow" /></button>
+                  <button type="submit" className="btn btn-primary" style={{ marginTop: "1.5rem" }}>
+                    Send message <Icon name="arrow" size={16} className="arrow" />
+                  </button>
                   <p style={{ fontSize: "0.75rem", color: "var(--text-3)", marginTop: "1rem" }}>By submitting you agree to our privacy policy. We never share your data.</p>
                 </motion.form>
               )}
@@ -71,8 +159,9 @@ export default function Contact() {
             </Reveal>
             <Reveal delay={0.3} className="contact__map">
               <div className="bg-grid" style={{ maskImage: "none", opacity: 0.8 }} />
-              <div className="contact__pin" style={{ left: "18%", top: "38%" }} /><div className="contact__pin" style={{ left: "47%", top: "30%" }} /><div className="contact__pin" style={{ left: "70%", top: "55%" }} />
-              <svg viewBox="0 0 100 60" style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} fill="none" stroke="rgba(34,211,238,0.5)" strokeWidth="0.4" strokeDasharray="1.5 1.5"><path d="M18 23 Q32 10 47 18 Q60 26 70 33" /></svg>
+              <div className="contact__pin" style={{ left: "64%", top: "46%" }} />
+              <div style={{ position: "absolute", left: "64%", top: "46%", transform: "translate(-50%, -50%)", width: 48, height: 48, borderRadius: "50%", border: "1px solid rgba(34,211,238,0.3)", animation: "ping 3s cubic-bezier(0, 0, 0.2, 1) infinite" }} />
+              <div style={{ position: "absolute", left: "64%", top: "62%", transform: "translateX(-50%)", fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--cyan)", background: "rgba(var(--bg-rgb), 0.85)", padding: "2px 8px", borderRadius: 999, border: "1px solid var(--line)" }}>Gujarat, IN</div>
             </Reveal>
           </div>
         </div>

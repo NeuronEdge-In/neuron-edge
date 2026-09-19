@@ -112,3 +112,89 @@
 .newsletter__form .field { min-width: 0; }
 .newsletter__form input { min-width: 0; width: 100%; }
 @media (max-width: 480px) { .newsletter__form { flex-direction: column; } }
+
+/* Custom Select Dropdown */
+.cselect { position: relative; width: 100%; }
+.cselect__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: rgba(var(--fg-rgb), 0.03);
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+.cselect__trigger:hover, .cselect__trigger.is-open {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.12);
+  background: rgba(var(--fg-rgb), 0.05);
+}
+.cselect__trigger.is-placeholder span {
+  color: var(--text-3);
+}
+.cselect__arrow {
+  color: var(--text-3);
+  flex-shrink: 0;
+  transition: transform 0.25s var(--ease), color 0.25s;
+}
+.cselect__trigger:hover .cselect__arrow,
+.cselect__trigger.is-open .cselect__arrow {
+  color: var(--cyan);
+}
+.cselect__arrow.is-rotated {
+  transform: rotate(180deg);
+}
+
+.cselect__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(var(--fg-rgb), 0.06);
+  backdrop-filter: blur(20px);
+  max-height: 280px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.cselect__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  user-select: none;
+}
+.cselect__option:hover {
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--text);
+}
+.cselect__option.is-selected {
+  background: rgba(34, 211, 238, 0.15);
+  color: var(--cyan);
+  font-weight: 500;
+}
+.cselect__check {
+  color: var(--cyan);
+  flex-shrink: 0;
+}

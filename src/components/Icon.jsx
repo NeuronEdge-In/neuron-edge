@@ -24,6 +24,7 @@ const paths = {
   calendar: <><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></>,
   clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
   star: <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9L12 3Z" />,
+  chevron: <path d="m6 9 6 6 6-6" />,
 };
 
 export default function Icon({ name, size = 22, stroke = 1.8, style }) {
