@@ -7,8 +7,8 @@ export const company = {
   promise: "Powering intelligence, delivering innovation.",
   founded: 2022,
   email: "info@neuronedge.in",
-  phone: "+91 73594 99087",
-  address: "ORCHID COMPLEX, A112, Chhapi, Gujarat 385210",
+  phone: "+91 82008 32629",
+  address: "F4, Real Arcade Complex, Near Axis Bank, Pirojpura Road, Chhapi, Gujarat, India, 385210",
   offices: ["Gujarat, India"],
   socials: [
     // { label: "LinkedIn", href: "https://linkedin.com" },
