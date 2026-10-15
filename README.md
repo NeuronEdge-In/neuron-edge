@@ -77,3 +77,41 @@ Screenshots are written to `.smoke/`.
 ## Deployment
 
 The app uses client-side routing. On static hosts (Netlify, Vercel, S3/CloudFront) add a rewrite of all routes to `/index.html`.
+
+## Post-Deployment Checklist: Search Engines & AI Indexation (SEO, GEO, AEO)
+
+After deploying this build, complete the following items to ensure Google, ChatGPT, and Perplexity index and rank NeuronEdge for **Chhapi**, **Palanpur**, and **Ahmedabad**:
+
+### 1. Social Media & Company Profiles (Pending Links)
+- [ ] **LinkedIn Company Page**: Create `https://linkedin.com/company/neuronedge` (Set location: Chhapi / Gujarat, India).
+- [ ] **GitHub Organization**: Create `https://github.com/neuronedge` (Showcase public repositories and client work).
+- [ ] **X / Twitter Profile**: Create `@neuronedge_in` or `@neuronedge`.
+- **How to update**: Once created, uncomment and paste URLs in `src/data/company.js` (`company.socials`) and uncomment `{/* Social media links ... */}` in `src/components/Footer.jsx`.
+
+### 2. Search Engine Indexation (Takes 10–15 mins)
+- [ ] **Google Search Console**:
+  1. Add property `https://neuronedge.in`.
+  2. Go to **Sitemaps** -> Submit `https://neuronedge.in/sitemap.xml`.
+  3. Go to **URL Inspection** -> Enter `https://neuronedge.in/` -> Click **Request Indexing**.
+  4. Also request indexing for the local authority guide: `https://neuronedge.in/blog/best-software-development-companies-gujarat-chhapi-palanpur-ahmedabad`.
+- [ ] **Bing Webmaster Tools (CRITICAL for ChatGPT)**:
+  1. Sign in to [bing.com/webmasters](https://www.bing.com/webmasters) with your Google account.
+  2. Click **Import from Google Search Console** (auto-syncs site and verification).
+  3. Submit `https://neuronedge.in/sitemap.xml`.
+  4. Use **URL Submission** to submit your homepage. *ChatGPT Search uses Bing's index directly.*
+
+### 3. Google Business Profile / Google Maps (Local 3-Pack & AI Overviews)
+- [ ] Go to [google.com/business](https://google.com/business).
+- [ ] Business Name: `NeuronEdge — Software, Web & Mobile App Development Company`
+- [ ] Primary Category: `Software Company` (Secondary: `Web Development Service`).
+- [ ] Address: `F4, Real Arcade Complex, Near Axis Bank, Pirojpura Road, Chhapi, Gujarat 385210`.
+- [ ] Service Areas: `Chhapi`, `Palanpur`, `Banaskantha`, `Ahmedabad`, `Mehsana`, `Gujarat`.
+- [ ] Website: `https://neuronedge.in`
+- [ ] Phone: `+91 82008 32629`
+- [ ] Complete Google verification (phone SMS or video verification).
+
+### 4. Third-Party Entity Footprint (For ChatGPT & Perplexity AEO Recommendations)
+- [ ] **Clutch.co**: Create a free agency profile for NeuronEdge (List Banas Water & Raahbar case studies).
+- [ ] **GoodFirms**: Create a free software development company listing.
+- [ ] **IndiaMART / JustDial**: List business under Chhapi/Palanpur software services.
+

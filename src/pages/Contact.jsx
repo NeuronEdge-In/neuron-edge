@@ -8,8 +8,6 @@ import "./Pages.css";
 
 function CustomSelect({ value, onChange, options, placeholder = "Select…" }) {
   const [open, setOpen] = useState(false);
-  const ref = useState(null)[0] || { current: null };
-  const containerRef = useState(() => ({ current: null }))[0];
 
   return (
     <div
@@ -154,7 +152,7 @@ export default function Contact() {
             <Reveal delay={0.15} className="contact__item"><div className="contact__icon"><Icon name="phone" /></div><div><div className="contact__label">Phone</div><a href={`tel:${company.phone.replace(/[^+\d]/g, "")}`}>{company.phone}</a></div></Reveal>
             <Reveal delay={0.2} className="contact__item"><div className="contact__icon"><Icon name="pin" /></div><div><div className="contact__label">Headquarters</div><span>{company.address}</span></div></Reveal>
             <Reveal delay={0.25} className="contact__offices">
-              <div className="contact__label">Offices</div>
+              <div className="contact__label">Offices & Service Hubs</div>
               {company.offices.map((o) => <div key={o} className="contact__office"><span className="hero__dot" style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", background: "var(--cyan)", boxShadow: "0 0 8px var(--cyan)" }} /> {o}</div>)}
             </Reveal>
             <Reveal delay={0.3} className="contact__map">

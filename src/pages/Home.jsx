@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
@@ -5,12 +6,14 @@ import Icon from "../components/Icon";
 import Img from "../components/Img";
 import { Reveal, SectionHead, Counter, SpotlightCard, CTA, /* Tilt, */ LogoMarquee } from "../components/ui";
 import { partners, techStack } from "../components/Brands";
-import { stats, services, projects, /* products, */ process, testimonials, posts, industries } from "../data/company";
+import { stats, services, projects, /* products, */ process, testimonials, posts, industries, faqs } from "../data/company";
 import "./Home.css";
+import "./Pages.css";
 
 const fade = (d = 0) => ({ initial: { opacity: 0, y: 24 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.9, delay: d, ease: [0.22, 1, 0.36, 1] } });
 
 export default function Home() {
+  const [openFaq, setOpenFaq] = useState(0);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 600], [0, -80]);
   const y2 = useTransform(scrollY, [0, 600], [0, -140]);
@@ -26,12 +29,12 @@ export default function Home() {
         <div className="glow" style={{ width: 500, height: 500, background: "var(--cyan)", bottom: -250, left: "-10%", opacity: 0.4 }} />
         <div className="container hero__inner hero__split">
           <div>
-            <motion.div className="hero__badge" {...fade(0)}><span className="hero__dot" /> Web · Mobile · Cloud · AI/ML</motion.div>
+            <motion.div className="hero__badge" {...fade(0)}><span className="hero__dot" /> Web · Mobile · Cloud · AI/ML · Chhapi · Palanpur · Ahmedabad</motion.div>
             <motion.h1 className="hero__title" {...fade(0.1)}>
               We build digital<br />products that<br /><span className="shimmer">scale.</span>
             </motion.h1>
             <motion.p className="lead hero__lead" {...fade(0.2)}>
-              NeuronEdge is an IT services and product company. We design, engineer and launch web apps, mobile apps, cloud platforms and AI solutions for startups and enterprises — from first sketch to millions of users.
+              NeuronEdge is an IT services and product engineering company headquartered in Gujarat, serving enterprises and fast-growing businesses across Chhapi, Palanpur, Ahmedabad, and worldwide. We design, engineer, and launch web apps, mobile apps, cloud platforms, and AI solutions — from first sketch to millions of users.
             </motion.p>
             <motion.div className="hero__actions" {...fade(0.3)}>
               <Link to="/contact" className="btn btn-primary">Get a free quote <Icon name="arrow" size={16} className="arrow" /></Link>
@@ -242,6 +245,34 @@ export default function Home() {
                 </Link>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ / AEO SECTION */}
+      <section className="section">
+        <div className="container">
+          <div className="split">
+            <SectionHead
+              eyebrow="Frequently Asked Questions"
+              title="Answers about our engineering, timeline and regional delivery."
+              lead="Everything you need to know about partnering with NeuronEdge in Chhapi, Palanpur, Ahmedabad, and globally."
+            />
+            <div className="faq">
+              {faqs.slice(0, 6).map((f, i) => (
+                <Reveal key={f.q} delay={i * 0.05}>
+                  <button
+                    type="button"
+                    className={`faq__item ${openFaq === i ? "is-open" : ""}`}
+                    onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
+                    aria-expanded={openFaq === i}
+                  >
+                    <div className="faq__q">{f.q} <Icon name="plus" size={18} /></div>
+                    <div className="faq__a"><p className="muted">{f.a}</p></div>
+                  </button>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>

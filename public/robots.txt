@@ -1,0 +1,31 @@
+# Robots.txt for NeuronEdge (https://neuronedge.in)
+User-agent: *
+Allow: /
+
+# Specifically allow major search engines and AI / Answer Engine crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Sitemap
+Sitemap: https://neuronedge.in/sitemap.xml

@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
 import { Reveal, SectionHead, SpotlightCard, CTA, PageHero, Counter } from "../components/ui";
-import Img from "../components/Img";
-import { values, milestones, stats, company } from "../data/company";
+import { values, milestones, stats } from "../data/company";
 import "./Pages.css";
 
 export default function About() {
