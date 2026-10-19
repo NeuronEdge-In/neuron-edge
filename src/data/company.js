@@ -209,6 +209,7 @@ export const projects = [
       "High-performance database layer with time-ordered UUIDv7 primary keys, compound B-tree indexing, and Upstash Redis caching delivering sub-50ms API response latency."
     ]
   },
+  /*
   {
     slug: "raahbar-spiritual-guide",
     title: "Rahbar Ecosystem — Islamic Spiritual Suite",
@@ -233,7 +234,7 @@ export const projects = [
     architecture: [
       "High-Throughput Fastify v5 Backend Microservices: Utilizes Node.js with Fastify v5 framework, delivering sub-50ms REST API response latency and minimal memory footprint compared to traditional web frameworks.",
       "Dual Database Hybrid Storage: Combines PostgreSQL 16 on cloud for centralized user management, content verification, and analytics, paired with on-device Expo SQLite for offline content caching.",
-      "Redis In-Memory Caching & QStash Scheduler: Uses Upstash Redis for rapid prayer schedule caching and QStash for serverless cron execution of daily metric rollups and push notification triggers."
+      "Redis In-Memory Caching & QStash Scheduler: Uses Upstash Redis for rapid prayer schedule caching and QStash for serverless cron execution of daily metric rollups and push notification triggers.",
     ],
     highlights: [
       "Two-Step Content Verification Pipeline: Multi-stage moderation workflow where community broadcasts, Payams, and religious literature undergo Super Admin verification & validation before public release and automated regional push dispatch.",
@@ -242,6 +243,7 @@ export const projects = [
       "Transactional outbox pattern (notificationWorker.ts) for reliably batch-dispatching mobile push notifications via Expo Push API with retry backoff."
     ]
   },
+  */
   {
     slug: "inventory-management-system",
     title: "Enterprise Dual-Mode Inventory & Accounting Platform",
@@ -309,7 +311,7 @@ export const projects = [
     year: "2025",
     summary: "A modern matrimonial platform that pairs verified profiles with preference-driven matchmaking. Members build a detailed profile, set partner criteria across community, education, profession and lifestyle, and connect only after mutual interest — with privacy controls, photo protection and human-moderated verification keeping the experience safe on both sides.",
     overview: "ZoleMate is a matrimony and matchmaking product built for families and individuals who want the reach of an online platform without the noise of casual dating apps. The system combines a structured profile model — personal, family, education, career, lifestyle and horoscope details — with a weighted matching engine that ranks candidates against each member's stated partner preferences. Trust is engineered in rather than bolted on: profiles pass document verification before going live, photos stay protected until a member grants access, and contact details are revealed only on a mutual accepted interest. A subscription layer gates outreach volume, and a moderation console gives the operations team the tooling to review, approve, flag and escalate profiles at scale.",
-    tech: ["Flutter", "React.js", "Node.js", "MongoDB", "Elasticsearch", "Redis", "AWS", "Razorpay"],
+    tech: ["React Native", "React.js", "Node.js", "MongoDB", "Elasticsearch", "Redis", "AWS", "Razorpay"],
     image: "/zolemate.png",
     hue: "violet",
     metrics: [["Verified", "Profiles Only"], ["Mutual", "Interest Gating"], ["Multi-Tier", "Subscription Plans"]],
@@ -327,7 +329,7 @@ export const projects = [
     architecture: [
       "Search and Ranking on a Dedicated Index: Profile documents are projected into an Elasticsearch index tuned for the matrimonial query shape — many low-cardinality filters combined with a weighted relevance score — keeping multi-criteria searches responsive as the profile base grows, while MongoDB remains the system of record for profile and transaction data.",
       "Privacy Enforced at the API Boundary: Contact details, photo URLs and horoscope data are stripped server-side based on the viewer's relationship to the profile owner, so a restricted field is never serialised into a response rather than merely hidden in the client. Signed, short-lived URLs gate every protected media asset.",
-      "Cross-Platform Client with a Shared Design System: A single Flutter codebase serves the Android and iOS apps while a React web app covers desktop browsing and the moderation console, with both clients consuming the same versioned REST contract and a shared token and component vocabulary.",
+      "Cross-Platform Client with a Shared Design System: A single React Native codebase serves the Android and iOS apps while a React web app covers desktop browsing and the moderation console, with both clients consuming the same versioned REST contract and a shared token and component vocabulary.",
       "Event-Driven Notification Fan-Out: Interests, accepts, plan expiries and new-match digests are published as domain events and consumed by a notification worker that fans out to push, SMS and email with per-channel rate limits, keeping delivery out of the request path."
     ]
   },

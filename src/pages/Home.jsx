@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import NeuralCanvas from "../components/NeuralCanvas";
 import Icon from "../components/Icon";
 import Img from "../components/Img";
+import SEO from "../components/SEO";
 import { Reveal, SectionHead, Counter, SpotlightCard, CTA, /* Tilt, */ LogoMarquee } from "../components/ui";
 import { partners, techStack } from "../components/Brands";
 import { stats, services, projects, /* products, */ process, testimonials, posts, industries, faqs } from "../data/company";
@@ -21,6 +22,11 @@ export default function Home() {
 
   return (
     <>
+      <SEO
+        title="Software, Web & Mobile App Development Agency | Chhapi · Palanpur · Ahmedabad"
+        description="NeuronEdge is a premier digital engineering and software development agency in Gujarat, serving businesses in Chhapi, Palanpur, Ahmedabad, and worldwide with custom web, mobile, cloud, and AI solutions."
+        path="/"
+      />
       {/* HERO */}
       <section className="hero">
         <NeuralCanvas density={70} />

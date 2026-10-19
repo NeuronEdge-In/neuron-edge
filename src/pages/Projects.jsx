@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Icon from "../components/Icon";
 import Img from "../components/Img";
+import SEO from "../components/SEO";
 import { Reveal, CTA, PageHero } from "../components/ui";
 import { projects } from "../data/company";
 import { techStack, BrandIcon } from "../components/Brands";
@@ -14,8 +15,23 @@ const cats = ["All", ...new Set(projects.map((p) => p.category))];
 export default function Projects() {
   const [cat, setCat] = useState("All");
   const list = cat === "All" ? projects : projects.filter((p) => p.category.includes(cat));
+
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Software, Web & Mobile App Projects Portfolio",
+    "description": "Portfolio of production web applications, mobile apps, and enterprise systems built by NeuronEdge.",
+    "url": "https://neuronedge.in/projects"
+  };
+
   return (
     <>
+      <SEO
+        title="Software & Mobile App Projects Portfolio"
+        description="Explore production web applications, mobile apps, and cloud systems engineered by NeuronEdge across ten industries."
+        path="/projects"
+        schema={collectionSchema}
+      />
       <PageHero eyebrow="Projects" title={<>A portfolio of products <span className="grad-text">shipped.</span></>} lead="Web, mobile, cloud and AI projects across ten industries. Every number is measured after launch.">
         <div className="filters">{cats.map((c) => <button key={c} className={`filter ${cat === c ? "is-active" : ""}`} onClick={() => setCat(c)}>{c}</button>)}</div>
       </PageHero>
@@ -58,8 +74,36 @@ export function ProjectDetail() {
       return item.includes(tName) || tName.includes(item.split(" ")[0]) || item.split(" ")[0] === tName.split(" ")[0];
     })
   );
+
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": p.title,
+    "description": p.overview || p.summary,
+    "applicationCategory": p.category,
+    "operatingSystem": "Web, iOS, Android",
+    "image": p.image.startsWith("http") ? p.image : `https://neuronedge.in${p.image}`,
+    "author": {
+      "@type": "Organization",
+      "name": "NeuronEdge",
+      "url": "https://neuronedge.in"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": p.client
+    },
+    "featureList": (p.features || []).join("; ")
+  };
+
   return (
     <>
+      <SEO
+        title={`${p.title} — Case Study`}
+        description={p.summary}
+        image={p.image}
+        path={`/projects/${p.slug}`}
+        schema={projectSchema}
+      />
       <PageHero eyebrow={`${p.client} · ${p.industry} · ${p.year}`} title={p.title} lead={p.summary}>
         {p.tech?.length > 0 && <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "1.5rem" }}>{p.tech.map((t) => <span key={t} className="tag" style={{ borderColor: "var(--line-strong)" }}>{t}</span>)}</div>}
         {(p.externalUrl || p.playStoreUrl || p.appStoreUrl) && (

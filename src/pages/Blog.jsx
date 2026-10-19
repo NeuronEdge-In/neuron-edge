@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import Icon from "../components/Icon";
 import Img from "../components/Img";
+import SEO from "../components/SEO";
 import { Reveal, PageHero, SectionHead } from "../components/ui";
 import { posts } from "../data/company";
 import "./Home.css";
@@ -14,8 +16,29 @@ export default function Blog() {
   const [cat, setCat] = useState("All");
   const list = cat === "All" ? posts : posts.filter((p) => p.category === cat);
   const [featured, ...rest] = list;
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "NeuronEdge Engineering Blog",
+    "description": "Practical writing on web, mobile, cloud and AI engineering from NeuronEdge.",
+    "url": "https://neuronedge.in/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NeuronEdge",
+      "url": "https://neuronedge.in",
+      "logo": "https://neuronedge.in/brand/logo-mark-96.png"
+    }
+  };
+
   return (
     <>
+      <SEO
+        title="Engineering Blog & Technical Insights"
+        description="Practical writing on web, mobile, cloud, and AI engineering — from the architects and engineers who build production systems every day."
+        path="/blog"
+        schema={blogSchema}
+      />
       <PageHero eyebrow="Blog" title={<>Insights from the <span className="grad-text">engineering floor.</span></>} lead="Practical writing on web, mobile, cloud and AI — from the people who build it every day.">
         <div className="filters">{cats.map((c) => <button key={c} className={`filter ${cat === c ? "is-active" : ""}`} onClick={() => setCat(c)}>{c}</button>)}</div>
       </PageHero>
@@ -72,14 +95,77 @@ export function BlogPost() {
   if (idx === -1) return <Navigate to="/blog" replace />;
   const p = posts[idx];
   const related = posts.filter((x) => x.slug !== slug && x.category === p.category).concat(posts.filter((x) => x.slug !== slug && x.category !== p.category)).slice(0, 3);
+
+  // High-authority Schema.org TechArticle for GEO and SEO
+  const postSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": p.title,
+    "description": p.excerpt,
+    "image": p.image.startsWith("http") ? p.image : `https://neuronedge.in${p.image}`,
+    "datePublished": p.date,
+    "dateModified": p.date,
+    "author": {
+      "@type": "Organization",
+      "name": p.author,
+      "url": "https://neuronedge.in",
+      "logo": "https://neuronedge.in/brand/logo-mark-96.png"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NeuronEdge",
+      "url": "https://neuronedge.in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://neuronedge.in/brand/logo-mark-96.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://neuronedge.in/blog/${p.slug}`
+    },
+    "articleSection": p.category,
+    "articleBody": p.body.join(" ")
+  };
+
   return (
     <>
+      <SEO
+        title={p.title}
+        description={p.excerpt}
+        image={p.image}
+        type="article"
+        path={`/blog/${p.slug}`}
+        schema={postSchema}
+      />
       <PageHero eyebrow={`${p.category} · ${fmt(p.date)} · ${p.read} read`} title={p.title} lead={p.excerpt}>
         <div className="author" style={{ marginTop: "1.6rem" }}><Img src={p.authorImg} alt={p.author} className="author__img author__img--lg" style={{ background: "rgba(var(--fg-rgb), 0.05)", padding: 6 }} /><div><strong>{p.author}</strong><div className="muted" style={{ fontSize: "0.8rem" }}>Engineering & Insights</div></div></div>
       </PageHero>
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <Reveal><Img src={p.image} alt={p.title} ratio="21/9" style={{ borderRadius: 24, border: "1px solid var(--line)" }} /></Reveal>
+          
+          {/* AEO / GEO Executive Takeaway Block */}
+          <Reveal delay={0.05}>
+            <div
+              className="aeo-summary"
+              style={{
+                margin: "2.5rem 0 2rem",
+                padding: "1.5rem 1.75rem",
+                borderRadius: "16px",
+                background: "linear-gradient(135deg, rgba(var(--cyan-rgb), 0.08), rgba(var(--violet-rgb), 0.05))",
+                border: "1px solid rgba(var(--cyan-rgb), 0.25)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.6rem", color: "var(--cyan)", fontWeight: 600, fontSize: "0.95rem" }}>
+                <Icon name="sparkle" size={18} /> Executive Summary & Key Takeaways
+              </div>
+              <p style={{ margin: 0, fontSize: "1.02rem", lineHeight: "1.65", color: "var(--fg)" }}>
+                {p.excerpt}
+              </p>
+            </div>
+          </Reveal>
+
           <Reveal className="article">
             {p.body.map((para, i) => <p key={i}>{para}</p>)}
             <blockquote>“Ship it, measure it, improve it. Everything else is a slide deck.”</blockquote>
@@ -98,3 +184,4 @@ export function BlogPost() {
     </>
   );
 }
+

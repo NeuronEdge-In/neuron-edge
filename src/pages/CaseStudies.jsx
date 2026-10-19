@@ -1,14 +1,29 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import Icon from "../components/Icon";
 import Img from "../components/Img";
+import SEO from "../components/SEO";
 import { Reveal, CTA, PageHero } from "../components/ui";
 import { caseStudies } from "../data/company";
 import "./Home.css";
 import "./Pages.css";
 
 export default function CaseStudies() {
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Engineering Case Studies & Measured Outcomes",
+    "description": "Technical deep dives, architectural challenges, and measured results delivered by NeuronEdge.",
+    "url": "https://neuronedge.in/case-studies"
+  };
+
   return (
     <>
+      <SEO
+        title="Engineering Case Studies & Measured Outcomes"
+        description="Deep dives into technical challenges, architectural solutions, and measured production results delivered by NeuronEdge."
+        path="/case-studies"
+        schema={collectionSchema}
+      />
       <PageHero eyebrow="Case studies" title={<>Deep dives into the <span className="grad-text">outcomes.</span></>} lead="The challenge, our approach and the measured results — written for people who have to make the same decisions." />
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="container" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -39,8 +54,35 @@ export function CaseStudyDetail() {
   if (idx === -1) return <Navigate to="/case-studies" replace />;
   const c = caseStudies[idx];
   const next = caseStudies[(idx + 1) % caseStudies.length];
+
+  const caseSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": `${c.title} — Case Study`,
+    "description": c.excerpt,
+    "image": c.image.startsWith("http") ? c.image : `https://neuronedge.in${c.image}`,
+    "author": {
+      "@type": "Organization",
+      "name": "NeuronEdge",
+      "url": "https://neuronedge.in"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NeuronEdge",
+      "url": "https://neuronedge.in"
+    },
+    "about": c.client
+  };
+
   return (
     <>
+      <SEO
+        title={`${c.title} — Case Study`}
+        description={c.excerpt}
+        image={c.image}
+        path={`/case-studies/${c.slug}`}
+        schema={caseSchema}
+      />
       <PageHero eyebrow={`Case study · ${c.client} · ${c.industry}`} title={c.title} lead={c.excerpt}>
         <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginTop: "1.5rem" }}>{c.services.map((t) => <span key={t} className="tag">{t}</span>)}</div>
       </PageHero>
